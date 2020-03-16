@@ -2,43 +2,58 @@ let befolkningURL = new URL('http://wildboy.uib.no/~tpe056/folk/104857.json');
 let sysselsatteURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
 let utdanningURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
 
-let xhr = new XMLHttpRequest();
 let responseObj;
 
 //xhr.open("GET", befolkningURL);
 //xhr.responseType = 'json';
 //xhr.send();
 //xhr.onload = function() {
-  //  responseObj = xhr.response;
-    //console.log(responseObj.elementer);
-    //let befolkning = xhr.response;
-    //console.log(JSON.parse(responseObj)["elementer"]);
+//  responseObj = xhr.response;
+//console.log(responseObj.elementer);
+//let befolkning = xhr.response;
+//console.log(JSON.parse(responseObj)["elementer"]);
 //};
 
-function CBefolkning(URL) {
-    xhr.open("GET", URL);
+//let data;
+
+function load(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", befolkningURL);
     xhr.responseType = "json";
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.response)
+            data = xhr.response
+            xhr.response
+        }
+    }
     xhr.send();
-    let responseBefolkning;
-    xhr.onload = function() {
-        this.responseBefolkning = xhr.response;
-        //console.log(responseBefolkning);
-        
+}
+
+
+
+let datasett = load(befolkningURL)
+
+
+function antallfolk() {
+    document.write("<table>");
+    document.write("<th>Kommune</th><th>Antall innbyggere</th><th>Kommunenummer</th>")
+    for (let i in data.elementer) {
+        //console.log(i + " har " + (parseInt(data.elementer[i].Menn[2018]) + parseInt(data.elementer[i].Kvinner[2018])) + " inbyggere, og kommunenummeret er " + data.elementer[i].kommunenummer)
+        document.write("<tr>")
+        document.write(`<td>${i}</td>`)
+        document.write(`<td>${parseInt(data.elementer[i].Menn[2018]) + parseInt(data.elementer[i].Kvinner[2018])}</td>`)
+        document.write(`<td>${data.elementer[i].kommunenummer}</td>`)
+        document.write("</tr>")
+
     }
-      getnames = function() {
-        responseBefolkning.elementer.forEach(element => {
-            console.log(element);
-            
-        });
-        responseBefolkning.elementer
-    }
-};
-
-let befolkningJSON = CBefolkning(befolkningURL);
-befolkningJSON.getames;
+    document.write("</table>");
+}
 
 
-
+function cl() {
+    document.body.innerHTML = ''
+}
 
 
 
@@ -63,14 +78,14 @@ befolkningJSON.getames;
 // xhr.send();
 // xhr.onload = function() {
 //     let responseObj = xhr.response;
-    
+
 // };
 
 // xhr.open("GET", utdanningURL);
 // xhr.send();
 // xhr.onload = function() {
 //     let responseObj = xhr.response;
-    
+
 // };
 
 
