@@ -2,4 +2,14 @@ li {
     float: left;
     margin: 10px;
     list-style-type: none;
+    color: lightslategrey;
+}
+
+.Intro {
+    text-align: center;
+    color: grey;
+}
+
+li:hover {
+    color: red;
 }
