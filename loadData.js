@@ -5,13 +5,13 @@ let sysselsatteURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
 let utdanningURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
 
 
-let datasett = new DataSet(befolkningURL)
+let population = new Population(befolkningURL);
 
 
 function antallfolk() {
     document.write("<table>");
     document.write("<th>Kommune</th><th>Antall innbyggere</th><th>Kommunenummer</th>")
-    let liste = datasett.data.elementer
+    let liste = population.data.elementer
     for (let i in liste) {
         document.write("<tr>")
         document.write(`<td>${i}</td>`)
