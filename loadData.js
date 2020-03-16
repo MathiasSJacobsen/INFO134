@@ -1,3 +1,5 @@
+// https://drive.google.com/file/d/1kk9p89nFm-I8T_R87PzlUv0TPAwgzUJY/view?usp=sharing
+
 let befolkningURL = new URL('http://wildboy.uib.no/~tpe056/folk/104857.json');
 let sysselsatteURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
 let utdanningURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
