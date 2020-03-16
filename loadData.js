@@ -4,83 +4,26 @@ let befolkningURL = new URL('http://wildboy.uib.no/~tpe056/folk/104857.json');
 let sysselsatteURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
 let utdanningURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
 
-let xhr = new XMLHttpRequest();
-let responseObj;
 
-//xhr.open("GET", befolkningURL);
-//xhr.responseType = 'json';
-//xhr.send();
-//xhr.onload = function() {
-  //  responseObj = xhr.response;
-    //console.log(responseObj.elementer);
-    //let befolkning = xhr.response;
-    //console.log(JSON.parse(responseObj)["elementer"]);
-//};
+let datasett = new DataSet(befolkningURL)
 
-function CBefolkning(URL) {
-    xhr.open("GET", URL);
-    xhr.responseType = "json";
-    xhr.send();
-    let responseBefolkning;
-    xhr.onload = function() {
-        this.responseBefolkning = xhr.response;
-        //console.log(responseBefolkning);
-        
+
+function antallfolk() {
+    document.write("<table>");
+    document.write("<th>Kommune</th><th>Antall innbyggere</th><th>Kommunenummer</th>")
+    let liste = datasett.data.elementer
+    for (let i in liste) {
+        document.write("<tr>")
+        document.write(`<td>${i}</td>`)
+        document.write(`<td>${parseInt(liste[i].Menn[2018]) + parseInt(liste[i].Kvinner[2018])}</td>`)
+        document.write(`<td>${liste[i].kommunenummer}</td>`)
+        document.write("</tr>")
+
     }
-      getnames = function() {
-        responseBefolkning.elementer.forEach(element => {
-            console.log(element);
-            
-        });
-        responseBefolkning.elementer
-    }
-};
-
-let befolkningJSON = CBefolkning(befolkningURL);
-befolkningJSON.getames;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// xhr.open("GET", sysselsatteURL);
-// xhr.send();
-// xhr.onload = function() {
-//     let responseObj = xhr.response;
-    
-// };
-
-// xhr.open("GET", utdanningURL);
-// xhr.send();
-// xhr.onload = function() {
-//     let responseObj = xhr.response;
-    
-// };
-
-
-function befolkning() {
-    console.log(this.responseObj);
+    document.write("</table>");
 }
 
-befolkning();
 
-
-
+function cl() {
+    document.body.innerHTML = ''
+}

@@ -24,7 +24,7 @@ class DataLoader {
         xhr.responseType = "json";
         xhr.onreadystatechange =  () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                this.data = xhr.response.elementer;
+                this.data = xhr.response;
                 if (callback) {
                     callback();
                 }
