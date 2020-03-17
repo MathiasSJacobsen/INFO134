@@ -17,3 +17,17 @@ li:hover {
     color: red;
     cursor: pointer;
 }
+
+#detailsSpan {
+    text-align: center;
+    display: block;
+}
+
+#detailsDiv table {
+    border: 1px solid black;
+}
+
+#detailsDiv th, #detailsDiv td {
+    border: 1px solid black;
+    padding: 15px;
+}
