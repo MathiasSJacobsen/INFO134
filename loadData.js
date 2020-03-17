@@ -15,7 +15,7 @@ function antallfolk() {
     for (let i in liste) {
         document.write("<tr>")
         document.write(`<td>${i}</td>`)
-        document.write(`<td>${parseInt(liste[i].Menn[2018]) + parseInt(liste[i].Kvinner[2018])}</td>`)
+        document.write(`<td>${liste[i].Menn[2018] + liste[i].Kvinner[2018]}</td>`)
         document.write(`<td>${liste[i].kommunenummer}</td>`)
         document.write("</tr>")
 

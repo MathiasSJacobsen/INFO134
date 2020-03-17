@@ -14,7 +14,7 @@
   <header>
     <ul id="nav">
       <li><a id="introButton">Introduksjon</a></li>
-      <li><a id="overviewButton">Oversikt</a></li>
+      <li><a id="overviewButton" onclick="antallfolk()">Oversikt</a></li>
       <li><a id="detailsButton">Detaljer</a></li>
       <li><a id="compairButton">Sammenligning</a></li>
     </ul>
@@ -46,7 +46,7 @@
         <tr>
           <th>Navn</th>
           <th>Kommunenummer</th>
-          <th>Befolkning</th>
+          <th onclick="antallfolk()">Befolkning</th>
           <th>Befolkningsvekst</th>
         </tr>
       </thead>
