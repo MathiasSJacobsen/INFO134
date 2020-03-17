@@ -28,26 +28,17 @@ function antallfolk() {
 let employment = new Employment(employmentURL);
 let education = new Education(educationURL);
 
-
-
-
+/**
+ * Hides the content that wasnt clicked on, and puts that content on the screen.
+ * Finds all content of the docment and hides it then unhide the decided content on to the screen.
+ * @param {String} id To the content that should be displayed
+ */
 function toggleHidden(id) {
-    let x = document.getElementById(id);
-    if (x.hidden) {
-        let intro = document.getElementById("intro")
-        let oversikt = document.getElementById("oversiktDiv")
-        let details = document.getElementById("detailsDiv")
-        let detailsTable = document.getElementById("detailTable");
-        //let sammenligning = document.getElementById("sammenligningDiv")
-
-        intro.hidden = true
-        oversikt.hidden = true;
-        details.hidden = true
-        detailsTable.hidden = true;
-        //sammenligning.hidden = true
-
-        x.hidden = false;
+    let content = document.getElementsByClassName("content");
+    for (i=0; i < content.length; i++) {
+        content.item(i).hidden = true;
     }
+    document.getElementById(id).hidden = false;
 }
 
 function clearDetails() {
@@ -87,3 +78,13 @@ function validNumber(municipalityNumber) {
     }
     return false;
 }
+//TODO: HVORFOR FUNKER IKKE DETTE?
+let input = document.getElementById("detailNumber");
+
+input.addEventListener("keyup", function(event){
+    if (event.keyCode === 13){
+        document.getElementById("detailButton").click();
+        console.log("hmmm");
+        
+    }
+});
