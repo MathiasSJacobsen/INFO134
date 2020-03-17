@@ -73,9 +73,13 @@ function getDetails() {
     document.getElementById("detailTable").hidden = false;
 }
 
+function makeDetailTable(municipalityName) {
+
+}
+
 function validName(municipalityName) {
     for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0] === municipalityName) {
+        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
             return true;
         }
     }
@@ -84,7 +88,7 @@ function validName(municipalityName) {
 
 function getFullName(municipalityName) {
     for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0] === municipalityName) {
+        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
             return municipality;
         }
     }
