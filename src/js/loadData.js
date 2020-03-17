@@ -11,13 +11,10 @@ let bool = true
 
 function antallfolk() {
     if (bool) {
-        let liste = population.data.elementer
-        console.log(liste)
-        for (let i in liste) {
+        let municipalities = population.data.elementer;
+        for (let municipality in municipalities) {
             let tRow = document.createElement("tr")
-            let totalBefolkning2007 = liste[i].Menn[2007] + liste[i].Kvinner[2007]
-            let totalBefolkning2018 = liste[i].Menn[2018] + liste[i].Kvinner[2018]
-            tRow.innerHTML = `<td>${i}</td> <td>${totalBefolkning2018}</td> <td>${liste[i].kommunenummer} <td>${((totalBefolkning2018 - totalBefolkning2007)/totalBefolkning2007 * 100).toFixed(2) + "%"}</td></td>`
+            tRow.innerHTML = `<td>${municipality}</td> <td>${population.getNumber(municipality)}</td> <td>${population.getTotalPopulation(municipality)} <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`
             document.getElementById("Oversikt").appendChild(tRow);
         }
         bool = false
