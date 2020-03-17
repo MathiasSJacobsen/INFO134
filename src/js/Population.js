@@ -14,13 +14,8 @@ class Population {
      * @return {String} Name of municipality
      */
     getName(municipalityNumber) {
-        let fourNumbers = /\d{4}/;
-        if (!fourNumbers.test(municipalityNumber)) {
-            alert("Not a valid municipality number");
-            return;
-        }
         for (let name in this.data.elementer) {
-            if (this.data.elementer[name][kommunenummer] === municipalityNumber) {
+            if (this.data.elementer[name]["kommunenummer"] === municipalityNumber) {
                 return name.toString();
             }
         }
