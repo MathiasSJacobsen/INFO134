@@ -9,10 +9,10 @@ class Education {
     }
 
     getHigherEducationPercent(municipalityName, year=2017) {
-        let bachelorMen = this.data.elementer[municipalityName]["03a"]["Menn"][year];
-        let bachelorWomen = this.data.elementer[municipalityName]["03a"]["Kvinner"][year];
         let masterMen = this.data.elementer[municipalityName]["04a"]["Menn"][year];
         let masterWomen = this.data.elementer[municipalityName]["04a"]["Kvinner"][year];
+        let bachelorMen = this.data.elementer[municipalityName]["03a"]["Menn"][year] - masterMen;
+        let bachelorWomen = this.data.elementer[municipalityName]["03a"]["Kvinner"][year] - masterWomen;
         let total = new Number(bachelorMen + bachelorWomen + masterMen + masterWomen);
         return total.toFixed(2);
     }
