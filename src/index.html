@@ -15,7 +15,7 @@
         <li onclick="toggleHidden('intro')"><a id="introButton">Introduksjon</a></li>
         <li onclick="toggleHidden('oversiktDiv'); antallfolk()"><a id="overviewButton">Oversikt</a></li>
         <li onclick="toggleHidden('detailsDiv');"><a id="detailsButton">Detaljer</a></li>
-        <li><a id="compairButton">Sammenligning</a></li>
+        <li onclick="toggleHidden('compairDiv');"><a id="compairButton">Sammenligning</a></li>
       </ul>
     </nav>
   </header>
@@ -23,7 +23,7 @@
   <!----Introduksjon---->
   <div id="intro" class="content">
 
-    <h1>----Introduksjon----</h1>
+    <h1>Introduksjon</h1>
     <p>Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen
       detaljer er fjernet. Dataene inneholder derfor noen unøyaktigheter.
       <br>
@@ -59,7 +59,7 @@
       <h1>Detaljer</h1>
       <label for="detailNumber">Kommunenummer:</label><br>
       <input type="text" id="detailNumber" placeholder="F.eks. 0101">
-      <button onclick="getDetails()">Søk</button>
+      <button onclick="getDetails()" id="detailButton">Søk</button>
     </span>
     <br><br>
     <table id="detailTable" hidden>
@@ -77,7 +77,8 @@
     </table>
   </div>
 
-  <div class="content">
+<!---Sammenlikning--->
+  <div id="compairDiv" class="content" hidden>
     <h1>Sammenligning</h1>
     <p>Skriv inn to kommunenummere for å kunne sammenlikne dem.</p>
   </div>
