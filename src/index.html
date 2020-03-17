@@ -21,7 +21,7 @@
   </header>
   <br>
   <!----Introduksjon---->
-  <div id="intro" class="Intro">
+  <div id="intro" class="content">
 
     <h1>----Introduksjon----</h1>
     <p>Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen
@@ -36,23 +36,26 @@
     </p>
   </div>
 
-
-
-
-
-
-
-  <div id="oversiktDiv" hidden>
+<!---Oversikt--->
+  <div id="oversiktDiv" class="content" hidden>
+    <h1>Oversikt</h1>
+    <p>Her finner du oversikt over alle kommunene med siste måling av total befolkning og befolkningsvekst.</p>
     <table id='Oversikt'>
       <thead>
         <tr>
           <th>Navn</th>
           <th>Kommunenummer</th>
-          <th onclick="antallfolk()">Befolkning</th>
+          <th>Befolkning</th>
           <th>Befolkningsvekst</th>
         </tr>
       </thead>
     </table>
+  </div>
+
+  <div class="content">
+    <h1>Detaljer</h1>
+    <p>Skriv inn et Kommunenummer for å få detaljert informasjon om kommunen.</p>
+    <input type="text" name="inputDetails" id="inputDetails" placeholder="f.eks 0101">
   </div>
 
   <script type="text/javascript" src="js/DataLoader.js"></script>
