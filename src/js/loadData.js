@@ -49,8 +49,11 @@ function clearDetails() {
 function getDetails() {
     let number = document.getElementById("detailNumber").value;
     if (!validNumber(number)) {
-        alert("Not a valid municipality number");
-        return;
+        if (!validName(number)) {
+            alert("Ugyldig nummer/navn");
+            return;
+        }
+        number = population.getNumber(getFullName(number));
     }
     let name = population.getName(number);
     let totalPopulation = population.getTotalPopulation(name);
@@ -68,6 +71,23 @@ function getDetails() {
     document.getElementById("detailBody").appendChild(tRow);
 
     document.getElementById("detailTable").hidden = false;
+}
+
+function validName(municipalityName) {
+    for (let municipality in population.data.elementer) {
+        if (municipality.split(" ")[0] === municipalityName) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getFullName(municipalityName) {
+    for (let municipality in population.data.elementer) {
+        if (municipality.split(" ")[0] === municipalityName) {
+            return municipality;
+        }
+    }
 }
 
 function validNumber(municipalityNumber) {
