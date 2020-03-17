@@ -28,6 +28,12 @@ class Population {
         return "No municipality with that number";
     }
 
+    getPopulationGrowth(municipalityName, from, to) {
+        let totPopFrom = this.getTotalPopulation(municipalityName, from);
+        let totPopTo = this.getTotalPopulation(municipalityName, to);
+        return ((totPopTo - totPopFrom)/totPopFrom * 100).toFixed(2);
+    }
+
     getTotalPopulation(municipalityName, year) {
         let men = this.data.elementer[municipalityName]["Menn"][this.getLastYearMeasured(municipalityName)];
         let women = this.data.elementer[municipalityName]["Kvinner"][this.getLastYearMeasured(municipalityName)];
