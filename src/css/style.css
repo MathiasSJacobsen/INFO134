@@ -19,7 +19,7 @@ li:hover {
     cursor: pointer;
 }
 header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0px;
     margin: 0px;
@@ -27,4 +27,15 @@ header {
 }
 header li {
     color: white;
+}
+footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    bottom: 0px;
+    background-color: aqua;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    clear: both;
+
 }
