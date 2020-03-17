@@ -1,10 +1,11 @@
 // https://drive.google.com/file/d/1kk9p89nFm-I8T_R87PzlUv0TPAwgzUJY/view?usp=sharing
 
-let befolkningURL = new URL('http://wildboy.uib.no/~tpe056/folk/104857.json');
-let sysselsatteURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
-let utdanningURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
+let populationURL = new URL('http://wildboy.uib.no/~tpe056/folk/104857.json');
+let employmentURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
+let educationURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
 
-let population = new Population(befolkningURL);
+
+let population = new Population(populationURL);
 
 let bool = true
 
@@ -24,6 +25,10 @@ function antallfolk() {
 }
 
 
+let employment = new Employment(employmentURL);
+let education = new Education(educationURL);
+
+
 
 
 function toggleHidden(id) {
@@ -41,4 +46,17 @@ function toggleHidden(id) {
 
         x.hidden = false;
     }
+}
+
+function details(municipalityNumber) {
+    let number = municipalityNumber;
+    let name = population.getName(number);
+    let higherEducationQuantity = education.getHigherEducationQuantity(name);
+    let higherEducationPercent = education.getHigherEducationPercent(name);
+    console.log("Name: " + name);
+    console.log("Number: " + number);
+    console.log("Higher education: " + higherEducationQuantity + " (" + higherEducationPercent + "%)");
+    
+    return "Name: " + name + ", Number: " + number + ", Higher education: " + higherEducationQuantity + " (" + higherEducationPercent + "%)";
+    
 }
