@@ -14,7 +14,7 @@
       <ul id="nav">
         <li onclick="toggleHidden('intro')"><a id="introButton">Introduksjon</a></li>
         <li onclick="toggleHidden('oversiktDiv'); antallfolk()"><a id="overviewButton">Oversikt</a></li>
-        <li><a id="detailsButton">Detaljer</a></li>
+        <li onclick="toggleHidden('detailsDiv');"><a id="detailsButton">Detaljer</a></li>
         <li><a id="compairButton">Sammenligning</a></li>
       </ul>
     </nav>
@@ -49,6 +49,30 @@
           <th>Befolkningsvekst</th>
         </tr>
       </thead>
+    </table>
+  </div>
+
+  <div id="detailsDiv" class="Details" hidden>
+    <br><br>
+    <span id="detailsSpan">
+      <h1>Detaljer</h1>
+      <label for="detailNumber">Kommunenummer:</label><br>
+      <input type="text" id="detailNumber">
+      <button onclick="getDetails()">Søk</button>
+    </span>
+    <br><br>
+    <table id="detailTable" hidden>
+      <thead id="detailHead">
+        <tr>
+          <th>Navn</th>
+          <th>Kommunenummer</th>
+          <th>Befolkning</th>
+          <th>Befolkningsvekst</th>
+          <th>Høyere utdanning</th>
+        </tr>
+      </thead>
+      <tbody id="detailBody">
+      </tbody>
     </table>
   </div>
 
