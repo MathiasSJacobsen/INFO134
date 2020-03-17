@@ -3,7 +3,7 @@ class DataLoader {
         this.url = url;
     }
 
-    extractData(callback) {
+    extractData = (callback) => {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", this.url);
         xhr.responseType = "json";

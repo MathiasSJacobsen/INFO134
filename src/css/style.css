@@ -1,6 +1,6 @@
 li {
     float: left;
-    margin: 10px;
+    padding: 20px;
     list-style-type: none;
     color: lightslategrey;
 }
@@ -15,4 +15,5 @@ li {
 
 li:hover {
     color: red;
+    cursor: pointer;
 }

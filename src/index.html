@@ -10,19 +10,22 @@
 
 <body>
   <header>
-    <ul id="nav">
-      <li><a id="introButton">Introduksjon</a></li>
-      <li><a id="overviewButton" onclick="antallfolk()">Oversikt</a></li>
-      <li><a id="detailsButton">Detaljer</a></li>
-      <li><a id="compairButton">Sammenligning</a></li>
-    </ul>
-    </header>
-    <br>
+    <nav>
+      <ul id="nav">
+        <li onclick="toggleHidden('intro')"><a id="introButton">Introduksjon</a></li>
+        <li onclick="toggleHidden('oversiktDiv'); antallfolk()"><a id="overviewButton">Oversikt</a></li>
+        <li><a id="detailsButton">Detaljer</a></li>
+        <li><a id="compairButton">Sammenligning</a></li>
+      </ul>
+    </nav>
+  </header>
+  <br>
   <!----Introduksjon---->
-  <div class="Intro">
+  <div id="intro" class="Intro">
 
     <h1>----Introduksjon----</h1>
-    <p>Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen detaljer er fjernet. Dataene inneholder derfor noen unøyaktigheter.
+    <p>Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen
+      detaljer er fjernet. Dataene inneholder derfor noen unøyaktigheter.
       <br>
       Dataene fra dette dataettet er hentet fra:
       <ul>
@@ -38,8 +41,8 @@
 
 
 
-  
-  <div hidden>
+
+  <div id="oversiktDiv" hidden>
     <table id='Oversikt'>
       <thead>
         <tr>
@@ -52,7 +55,7 @@
     </table>
   </div>
 
-  <script type="text/javascript" src ="js/DataLoader.js"></script>
+  <script type="text/javascript" src="js/DataLoader.js"></script>
   <script type="text/javascript" src="js/Population.js"></script>
   <script type="text/javascript" src="js/Education.js"></script>
   <script type="text/javascript" src="js/Employment.js"></script>
