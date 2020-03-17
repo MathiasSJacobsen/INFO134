@@ -1,3 +1,7 @@
+body {
+    margin: 0px;
+}
+
 li {
     float: left;
     padding: 20px;
@@ -43,13 +47,12 @@ header li {
     color: white;
 }
 footer {
-    position: relative;
+    position: fixed;
     width: 100%;
     text-align: center;
     bottom: 0px;
-    background-color: aqua;
+    background-color: grey;
     padding-top: 10px;
     padding-bottom: 10px;
     clear: both;
-
 }
