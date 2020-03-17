@@ -11,9 +11,20 @@ li {
     margin-left: auto;
     margin-right: auto;
     width: 400px;
+    padding-top: 50px;
 }
 
 li:hover {
     color: red;
     cursor: pointer;
+}
+header {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    margin: 0px;
+    background-color: dimgray;
+}
+header li {
+    color: white;
 }
