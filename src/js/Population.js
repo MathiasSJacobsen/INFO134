@@ -4,7 +4,6 @@ class Population {
         this.dataLoader = new DataLoader(url);
         this.onload = () => {
             this.data = this.dataLoader.data;
-            this.municipalities = this.data.elementer;
         }
         this.loadData();
     }
@@ -20,36 +19,28 @@ class Population {
             alert("Not a valid municipality number");
             return;
         }
-        for (let name in this.municipalities) {
-            if (this.municipalities[name].kommunenummer === municipalityNumber) {
-                return name;
+        for (let name in this.data.elementer) {
+            if (this.data.elementer[name][kommunenummer] === municipalityNumber) {
+                return name.toString();
             }
         }
         return "No municipality with that number";
     }
 
-    getPopulationGrowth(municipalityName, from, to) {
+    getNumber(municipalityName) {
+        return this.data.elementer[municipalityName].kommunenummer;
+    }
+
+    getPopulationGrowth(municipalityName, from=2007, to=2018) {
         let totPopFrom = this.getTotalPopulation(municipalityName, from);
         let totPopTo = this.getTotalPopulation(municipalityName, to);
         return ((totPopTo - totPopFrom)/totPopFrom * 100).toFixed(2);
     }
 
-    getTotalPopulation(municipalityName, year) {
-        let men = this.data.elementer[municipalityName]["Menn"][this.getLastYearMeasured(municipalityName)];
-        let women = this.data.elementer[municipalityName]["Kvinner"][this.getLastYearMeasured(municipalityName)];
-        if (year) {
-            men = this.data.elementer[municipalityName]["Menn"][year];
-            women = this.data.elementer[municipalityName]["Kvinner"][year];
-        }
+    getTotalPopulation(municipalityName, year=2018) {
+        let men = this.data.elementer[municipalityName]["Menn"][year];
+        let women = this.data.elementer[municipalityName]["Kvinner"][year];
         return men + women;
-    }
-
-    getLastYearMeasured(municipalityName) {
-        let year = 2020;
-        while (!this.data.elementer[municipalityName]["Menn"][year.toString()]) {
-            year--;
-        }
-        return year;
     }
 
     loadData() {
