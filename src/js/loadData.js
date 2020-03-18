@@ -157,7 +157,6 @@ function getEducationStats(municipalityNumber, nr) {
         table = document.getElementById("municipalityTwo");
     }
 
-
     let caption = document.createElement("caption");
     let tableRow = document.createElement("tr");
     let catHeadElement = document.createElement("th");
@@ -175,6 +174,29 @@ function getEducationStats(municipalityNumber, nr) {
     tableRow.appendChild(womenHeadElement);
 
     table.appendChild(tableRow);
+
+    for(let cat in education.data.elementer[municipality]){
+        
+        if (cat === "kommunenummer") {
+            continue;
+        }
+        let tRow = document.createElement("tr");
+
+        let catElement = document.createElement("td");
+        let menElement = document.createElement("td");
+        let womenElement = document.createElement("td");
+
+        catElement.appendChild(document.createTextNode(cat + ": " + education.getCategory(cat)));
+        menElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Menn")+ "%"));
+        womenElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Kvinner")+"%"));
+
+        tRow.appendChild(catElement);
+        tRow.appendChild(menElement);
+        tRow.appendChild(womenElement);
+
+        table.appendChild(tRow);
+    }
+
 }
 
 function compare(){
@@ -195,3 +217,4 @@ function compare(){
     getEducationStats(input2, 2);
 
 }
+

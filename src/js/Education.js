@@ -60,4 +60,9 @@ class Education {
     loadData() {
         this.dataLoader.extractData(this.onload);
     }
+
+    getCategory(ID) {
+        return this.data.datasett.kategorier[ID];
+    }
+
 }
