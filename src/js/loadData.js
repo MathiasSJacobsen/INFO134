@@ -28,7 +28,7 @@ function validName(municipalityName) {
 
 function validNumber(municipalityNumber) {
     for (let municipality in population.data.elementer) {
-        if (population.data.elementer[municipality].kommunenummer === municipalityNumber) {
+        if (population.data.elementer[municipality.toString()].kommunenummer === municipalityNumber) {
             return true;
         }
     }
@@ -43,9 +43,9 @@ function makeOverviewTable() {
         for (let municipality in municipalities) {
             let tRow = document.createElement("tr");
             tRow.innerHTML = `<td>${municipality}</td>
-                              <td>${population.getNumber(municipality)}</td>
-                              <td>${population.getTotalPopulation(municipality)}
-                              <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`
+                                <td>${population.getNumber(municipality)}</td>
+                                <td>${population.getTotalPopulation(municipality)}
+                                <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`
             document.getElementById("overviewTable").appendChild(tRow);
         }
         bool = false;
@@ -149,7 +149,6 @@ let input = document.getElementById("detailNumber");
 input.addEventListener("keyup", function(event){
     if (event.keyCode === 13){
         document.getElementById("detailButton").click();
-        console.log("hmmm");
         
     }
 });
