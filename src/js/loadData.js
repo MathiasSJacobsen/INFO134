@@ -158,3 +158,15 @@ function getDetails() {
     makeDetailOverview(value);
     makeDetailYearTable(value);
 }
+
+window.onload = function() {
+    const input = this.document.getElementById("detailNumber");
+    const button = this.document.getElementById("detailButton");
+    
+    input.addEventListener("keyup", function(event) {
+        
+        if (event.keyCode === 13) {            
+            button.click();
+        }
+    });
+}
