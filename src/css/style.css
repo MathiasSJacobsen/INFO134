@@ -75,13 +75,21 @@ th {
     
 }
 
+#compareSpan {
+    display: flex;
+    flex-direction: row;
+}
+
+#municipalityOne, #municipalityTwo {
+    margin: 10px;
+}
 
 
 #table {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    
+
 }
 
 

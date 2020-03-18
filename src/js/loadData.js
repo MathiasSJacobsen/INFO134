@@ -8,24 +8,6 @@ let population = new Population(populationURL);
 let employment = new Employment(employmentURL);
 let education = new Education(educationURL);
 
-
-function getFullName(municipalityName) {
-    for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
-            return municipality;
-        }
-    }
-}
-
-function validName(municipalityName) {
-    for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 function validNumber(municipalityNumber) {
     for (let municipality in population.data.elementer) {
         if (population.data.elementer[municipality.toString()].kommunenummer === municipalityNumber) {
@@ -74,8 +56,7 @@ function clearDetails() {
     document.getElementById("detailTableBody").innerHTML="";
 }
 
-function makeDetailOverview(value) {
-    let number = value;
+function makeDetailOverview(number) {
     let name = population.getName(number);
     let totalPopulation = population.getTotalPopulation(name);
     let populationGrowth = population.getPopulationGrowth(name);
@@ -124,7 +105,7 @@ function makeDetailYearTable(number) {
 
     
     
-    for (let year = 2007; year < 2018; year++) {
+    for (let year = 2017; year > 2006; year--) {
 
         let tableBodyRow = document.createElement("tr");
         tableBodyRow.id = "row"
@@ -148,18 +129,15 @@ function makeDetailYearTable(number) {
 }
 
 function getDetails() {
-    let value = document.getElementById("detailNumber").value;
-    if (!validNumber(value)) {
-        if (!validName(value)) {
-            alert("Ugyldig nummer/navn");
-            return;
-        }
-        value = population.getNumber(getFullName(value));
+    let number = document.getElementById("detailNumber").value;
+    if (!validNumber(number)) {
+        alert("Ugyldig nummer");
+        return;
     }
 
     clearDetails();
-    makeDetailOverview(value);
-    makeDetailYearTable(value);
+    makeDetailOverview(number);
+    makeDetailYearTable(number);
 }
 
 
@@ -178,3 +156,74 @@ window.onload = function() {
         }
     });
 }
+
+function getEducationStats(municipalityNumber, nr) {
+    let municipality = population.getName(municipalityNumber);
+
+    let table = document.getElementById("municipalityOne");
+
+    if (nr === 2) {
+        table = document.getElementById("municipalityTwo");
+    }
+
+    let caption = document.createElement("caption");
+    let tableRow = document.createElement("tr");
+    let catHeadElement = document.createElement("th");
+    let menHeadElement = document.createElement("th");
+    let womenHeadElement = document.createElement("th");
+
+    caption.appendChild(document.createTextNode(municipality))
+    catHeadElement.appendChild(document.createTextNode("Kategori"));
+    menHeadElement.appendChild(document.createTextNode("Menn"));
+    womenHeadElement.appendChild(document.createTextNode("Kvinner"));
+    
+    table.appendChild(caption);
+    tableRow.appendChild(catHeadElement);
+    tableRow.appendChild(menHeadElement);
+    tableRow.appendChild(womenHeadElement);
+
+    table.appendChild(tableRow);
+
+    for(let cat in education.data.elementer[municipality]){
+        
+        if (cat === "kommunenummer") {
+            continue;
+        }
+        let tRow = document.createElement("tr");
+
+        let catElement = document.createElement("td");
+        let menElement = document.createElement("td");
+        let womenElement = document.createElement("td");
+
+        catElement.appendChild(document.createTextNode(cat + ": " + education.getCategory(cat)));
+        menElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Menn")+ "%"));
+        womenElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Kvinner")+"%"));
+
+        tRow.appendChild(catElement);
+        tRow.appendChild(menElement);
+        tRow.appendChild(womenElement);
+
+        table.appendChild(tRow);
+    }
+
+}
+
+function compare(){
+
+    const input1 = document.getElementById("compareInput1").value;
+    const input2 = document.getElementById("compareInput2").value;
+
+    if (!validNumber(input1)) {
+            alert("Ugyldig nummer på første søkefelt");
+            return;
+        }
+    if (!validNumber(input2)) {
+        alert("Ugyldig nummer på andre søkefelt");
+        return;
+    }
+
+    getEducationStats(input1, 1);
+    getEducationStats(input2, 2);
+
+}
+

@@ -11,8 +11,8 @@ class Education {
     getNames() {
         const elements = this.data.elementer;
         let names = [];
-        for (let x in elements){
-            names.push(x)
+        for (let municipality in elements){
+            names.push(municipality)
         }
         return names;
     }
@@ -20,18 +20,34 @@ class Education {
     getIDs () {
         const elements = this.data.elementer;
         let IDs = [];
-        for (let x in elements) {
-            IDs.push(elements[x]["kommunenummer"]);
+        for (let municipality in elements) {
+            IDs.push(elements[municipality]["kommunenummer"]);
         }
         return IDs;
     }
 
+    getInfo(municipalityNumber){
+        const elements = this.data.elementer;
+        for (let municipality in elements) {
+            if(elements[municipality]["kommunenummer"] === municipalityNumber) {
+                let info = elements[municipality];
+                info.Kommune = municipality;
+                return info;
+            }
+        }
+    }
+
+    getEducationPercent(municipalityName, eduCat, gender, year=2017) {
+        let education = this.data.elementer[municipalityName.toString()][eduCat.toString()][gender.toString()][year.toString()];
+        return new Number(education).toFixed(2);
+    }
+
     getHigherEducationPercent(municipalityName, year=2017) {
-        let masterMen = this.data.elementer[municipalityName.toString()]["04a"]["Menn"][year.toString()];
-        let masterWomen = this.data.elementer[municipalityName.toString()]["04a"]["Kvinner"][year.toString()];
-        let bachelorMen = this.data.elementer[municipalityName.toString()]["03a"]["Menn"][year.toString()] - masterMen;
-        let bachelorWomen = this.data.elementer[municipalityName.toString()]["03a"]["Kvinner"][year.toString()] - masterWomen;
-        let total = bachelorMen + bachelorWomen + masterMen + masterWomen;
+        let masterMen = new Number(this.getEducationPercent(municipalityName, "04a", "Menn", year));
+        let masterWomen = new Number(this.getEducationPercent(municipalityName, "04a", "Kvinner", year));
+        let bachelorMen = new Number(this.getEducationPercent(municipalityName, "03a", "Menn", year));
+        let bachelorWomen = new Number(this.getEducationPercent(municipalityName, "03a", "Kvinner", year));
+        let total = new Number((bachelorMen + bachelorWomen + masterMen + masterWomen)/4);
         return total.toFixed(2);
     }
 
@@ -44,4 +60,9 @@ class Education {
     loadData() {
         this.dataLoader.extractData(this.onload);
     }
+
+    getCategory(ID) {
+        return this.data.datasett.kategorier[ID];
+    }
+
 }

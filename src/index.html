@@ -60,7 +60,7 @@
     <span id="top">
       <h1>Detaljer</h1>
       <label for="detailNumber">Kommunenummer eller kommunenavn:</label><br>
-      <input type="text" id="detailNumber" placeholder="F.eks. 0101 eller Oslo">
+      <input type="text" id="detailNumber" placeholder="F.eks. 0101">
       <button onclick="getDetails()" id="detailButton">Søk</button>
     </span>
     <div id="top">
@@ -80,9 +80,17 @@
     <div id="top">
       <h1>Sammenligning</h1>
       <p>Skriv inn to kommunenummere for å kunne sammenligne dem.</p>
-      <input type="text" name="compairInput1" id="compairInput1">
-      <input type="text" name="compairInput2" id="compairInput2">
-      <button type="submit">Sammenligne</button>
+      <input type="text" name="compareInput1" id="compareInput1" placeholder="F.eks. 0101">
+      <input type="text" name="compareInput2" id="compareInput2" placeholder="F.eks. 0101">
+      <button type="submit" onclick="compare()">Sammenligne</button>
+      <span id="compareSpan">
+        <table id="municipalityOne">
+
+        </table>
+        <table id="municipalityTwo">
+
+        </table>
+      </span>
     </div>
   </div>
 
