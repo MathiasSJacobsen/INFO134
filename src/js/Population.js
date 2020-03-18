@@ -14,16 +14,16 @@ class Population {
      * @return {String} Name of municipality
      */
     getName(municipalityNumber) {
-        for (let name in this.data.elementer) {
-            if (this.data.elementer[name]["kommunenummer"] === municipalityNumber) {
-                return name.toString();
+        for (let municipality in this.data.elementer) {
+            if (this.data.elementer[municipality.toString()]["kommunenummer"] === municipalityNumber) {
+                return municipality.toString();
             }
         }
         return "No municipality with that number";
     }
 
     getNumber(municipalityName) {
-        return this.data.elementer[municipalityName].kommunenummer;
+        return this.data.elementer[municipalityName.toString()].kommunenummer;
     }
 
     getPopulationGrowth(municipalityName, from=2007, to=2018) {
@@ -33,8 +33,8 @@ class Population {
     }
 
     getTotalPopulation(municipalityName, year=2018) {
-        let men = this.data.elementer[municipalityName]["Menn"][year];
-        let women = this.data.elementer[municipalityName]["Kvinner"][year];
+        let men = this.data.elementer[municipalityName.toString()]["Menn"][year.toString()];
+        let women = this.data.elementer[municipalityName.toString()]["Kvinner"][year.toString()];
         return men + women;
     }
 
