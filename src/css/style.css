@@ -95,7 +95,7 @@ th {
 
 
 @media (max-width:700px){
-    #row {
+    #row, #compareSpan {
         display: flex;
         flex-direction: column;
     }
