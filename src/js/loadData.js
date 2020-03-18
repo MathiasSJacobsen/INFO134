@@ -46,7 +46,7 @@ function antallfolk() {
                               <td>${population.getNumber(municipality)}</td>
                               <td>${population.getTotalPopulation(municipality)}
                               <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`
-            document.getElementById("Oversikt").appendChild(tRow);
+            document.getElementById("overviewTable").appendChild(tRow);
         }
         bool = false;
     }
@@ -95,7 +95,6 @@ function makeDetailOverview(value) {
 function makeDetailYearTable(number) {
     let municipality = population.getName(number);
     let tableBody = document.getElementById("detailTableBody");
-    console.log(tableBody);
     
     for (let year = 2007; year < 2018; year++) {
 

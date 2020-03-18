@@ -13,7 +13,7 @@
     <nav>
       <ul id="nav">
         <li onclick="toggleHidden('intro')"><a id="introButton">Introduksjon</a></li>
-        <li onclick="toggleHidden('oversiktDiv'); antallfolk()"><a id="overviewButton">Oversikt</a></li>
+        <li onclick="toggleHidden('overviewDiv'); antallfolk()"><a id="overviewButton">Oversikt</a></li>
         <li onclick="toggleHidden('detailsDiv');"><a id="detailsButton">Detaljer</a></li>
         <li onclick="toggleHidden('compairDiv');"><a id="compairButton">Sammenligning</a></li>
       </ul>
@@ -37,10 +37,10 @@
   </div>
 
 <!---Oversikt--->
-  <div id="oversiktDiv" class="content" hidden>
+  <div id="overviewDiv" class="content" hidden>
     <h1>Oversikt</h1>
     <p>Her finner du oversikt over alle kommunene med siste måling av total befolkning og befolkningsvekst.</p>
-    <table id='Oversikt'>
+    <table id='overviewTable'>
       <thead>
         <tr>
           <th>Navn</th>
