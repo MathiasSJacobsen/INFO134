@@ -18,6 +18,15 @@ class Employment {
         return names;
     }
 
+    getIDs() {
+        const elements = this.data.elementer;
+        let IDs = [];
+        for (let x in elements) {
+            IDs.push(elements[x]["kommunenummer"]);
+        }
+        return IDs;
+    }
+
     getEmploymentPercent(municipalityName, year=2018) {
         let employmentMen = this.data.elementer[municipalityName.toString()]["Menn"][year.toString()];
         let employmentWomen = this.data.elementer[municipalityName.toString()]["Kvinner"][year.toString()];
