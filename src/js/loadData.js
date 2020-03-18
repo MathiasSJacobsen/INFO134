@@ -140,7 +140,9 @@ function getDetails() {
     makeDetailOverview(number);
     makeDetailYearTable(number);
 }
-
+/**
+ * Adds that the user can use 'enter' on submission buttons
+ */
 window.onload = function() {
     const detailInput = this.document.getElementById("detailInput");
     const detailButton = this.document.getElementById("detailButton");
@@ -151,21 +153,21 @@ window.onload = function() {
         }
     });
 
-    // const compareInput1 = this.document.getElementById("compareInput1");
-    // const compareInput2 = this.document.getElementById("compareInput2");
-    // const compareButton = this.document.getElementById("detailButton");
+    const compareInput1 = this.document.getElementById("compareInput1");
+    const compareInput2 = this.document.getElementById("compareInput2");
+    const compareButton = this.document.getElementById("compareButton");
 
-    // compareInput1.addEventListener("keyup", function(event) {
-    //     if (event.keyCode === 13) {            
-    //         compareButton.click();
-    //     }
-    // });
+    compareInput1.addEventListener("keyup", function(event) {
+         if (event.keyCode === 13) {            
+             compareButton.click();
+         }
+    });
 
-    // compareInput2.addEventListener("keyup", function(event) {
-    //     if (event.keyCode === 13) {            
-    //         compareButton.click();
-    //     }
-    // });
+     compareInput2.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {            
+            compareButton.click();
+        }
+    });
 }
 
 function getEducationStats(municipalityNumber, nr) {
