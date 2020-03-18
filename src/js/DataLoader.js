@@ -14,7 +14,7 @@ class DataLoader {
                     callback();
                 }
             }
-        }
+        };
         xhr.send();
     }
 }

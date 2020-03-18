@@ -4,7 +4,7 @@ class Education {
         this.dataLoader = new DataLoader(url);
         this.onload = () => {
             this.data = this.dataLoader.data;
-        }
+        };
         this.loadData();
     }
 

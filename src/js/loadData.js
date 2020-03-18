@@ -1,32 +1,56 @@
 // https://drive.google.com/file/d/1kk9p89nFm-I8T_R87PzlUv0TPAwgzUJY/view?usp=sharing
 
-let populationURL = new URL('http://wildboy.uib.no/~tpe056/folk/104857.json');
-let employmentURL = new URL('http://wildboy.uib.no/~tpe056/folk/100145.json');
-let educationURL = new URL('http://wildboy.uib.no/~tpe056/folk/85432.json');
-
+let populationURL = new URL("http://wildboy.uib.no/~tpe056/folk/104857.json");
+let employmentURL = new URL("http://wildboy.uib.no/~tpe056/folk/100145.json");
+let educationURL = new URL("http://wildboy.uib.no/~tpe056/folk/85432.json");
 
 let population = new Population(populationURL);
+let employment = new Employment(employmentURL);
+let education = new Education(educationURL);
 
-let bool = true
+
+function getFullName(municipalityName) {
+    for (let municipality in population.data.elementer) {
+        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
+            return municipality;
+        }
+    }
+}
+
+function validName(municipalityName) {
+    for (let municipality in population.data.elementer) {
+        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function validNumber(municipalityNumber) {
+    for (let municipality in population.data.elementer) {
+        if (population.data.elementer[municipality].kommunenummer === municipalityNumber) {
+            return true;
+        }
+    }
+    return false;
+}
+
+let bool = true;
 
 function antallfolk() {
     if (bool) {
         let municipalities = population.data.elementer;
         for (let municipality in municipalities) {
-            let tRow = document.createElement("tr")
+            let tRow = document.createElement("tr");
             tRow.innerHTML = `<td>${municipality}</td>
                               <td>${population.getNumber(municipality)}</td>
                               <td>${population.getTotalPopulation(municipality)}
                               <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`
             document.getElementById("Oversikt").appendChild(tRow);
         }
-        bool = false
+        bool = false;
     }
 }
-
-
-let employment = new Employment(employmentURL);
-let education = new Education(educationURL);
 
 /**
  * Hides the content that wasnt clicked on, and puts that content on the screen.
@@ -35,7 +59,7 @@ let education = new Education(educationURL);
  */
 function toggleHidden(id) {
     let content = document.getElementsByClassName("content");
-    for (i=0; i < content.length; i++) {
+    for (let i = 0; i < content.length; i++) {
         content.item(i).hidden = true;
     }
     document.getElementById(id).hidden = false;
@@ -44,22 +68,6 @@ function toggleHidden(id) {
 function clearDetails() {
     document.getElementById("detailOverview").innerHTML="";
     document.getElementById("detailTableBody").innerHTML="";
-}
-
-function getDetails() {
-    let value = document.getElementById("detailNumber").value;
-
-    if (!validNumber(value)) {
-        if (!validName(value)) {
-            alert("Ugyldig nummer/navn");
-            return;
-        }
-        value = population.getNumber(getFullName(value));
-    }
-
-    clearDetails();
-    makeDetailOverview(value);
-    makeDetailYearTable(value);
 }
 
 function makeDetailOverview(value) {
@@ -91,7 +99,7 @@ function makeDetailYearTable(number) {
     
     for (let year = 2007; year < 2018; year++) {
 
-        let trow = document.createElement("tr");
+        let tRow = document.createElement("tr");
 
         let yearElement = document.createElement("td");
         let populationELement = document.createElement("td");
@@ -103,40 +111,30 @@ function makeDetailYearTable(number) {
         employmentElement.innerHTML = employment.getEmploymentPercent(municipality, year) + "%";
         educationElement.innerHTML = education.getHigherEducationPercent(municipality, year) + "%";
 
-        trow.appendChild(yearElement);
-        trow.appendChild(populationELement);
-        trow.appendChild(employmentElement);
-        trow.appendChild(educationElement);
+        tRow.appendChild(yearElement);
+        tRow.appendChild(populationELement);
+        tRow.appendChild(employmentElement);
+        tRow.appendChild(educationElement);
 
-        tableBody.appendChild(trow);
+        tableBody.appendChild(tRow);
     }
 }
 
-function validName(municipalityName) {
-    for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
-            return true;
+function getDetails() {
+    let value = document.getElementById("detailNumber").value;
+    if (!validNumber(value)) {
+        if (!validName(value)) {
+            alert("Ugyldig nummer/navn");
+            return;
         }
+        value = population.getNumber(getFullName(value));
     }
-    return false;
+
+    clearDetails();
+    makeDetailOverview(value);
+    makeDetailYearTable(value);
 }
 
-function getFullName(municipalityName) {
-    for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
-            return municipality;
-        }
-    }
-}
-
-function validNumber(municipalityNumber) {
-    for (let municipality in population.data.elementer) {
-        if (population.data.elementer[municipality].kommunenummer === municipalityNumber) {
-            return true;
-        }
-    }
-    return false;
-}
 //TODO: HVORFOR FUNKER IKKE DETTE?
 let input = document.getElementById("detailNumber");
 
