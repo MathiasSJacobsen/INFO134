@@ -134,7 +134,7 @@ function makeDetailYearTable(number) {
 }
 
 function getDetails() {
-    let number = document.getElementById("detailNumber").value;
+    let number = document.getElementById("detailInput").value;
     if (!validNumber(number)) {
         alert("Ugyldig nummer");
         return;
