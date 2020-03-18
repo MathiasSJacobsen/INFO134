@@ -94,6 +94,15 @@ function makeDetailOverview(value) {
 
 function makeDetailYearTable(number) {
     let municipality = population.getName(number);
+    
+    let tableHead = document.getElementById("detailTableHead");
+    tableHead.innerHTML = `<tr>
+                           <th>År</th>
+                           <th>Befolkning</th>
+                           <th>Sysselsatte</th>
+                           <th>Utdannede</th>
+                           </tr>`;
+
     let tableBody = document.getElementById("detailTableBody");
     
     for (let year = 2007; year < 2018; year++) {
