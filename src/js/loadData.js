@@ -130,7 +130,7 @@ function makeDetailYearTable(number) {
 }
 
 function getDetails() {
-    let number = document.getElementById("detailNumber").value;
+    let number = document.getElementById("detailInput").value;
     if (!validNumber(number)) {
         alert("Ugyldig nummer");
         return;
@@ -146,7 +146,7 @@ window.onload = function() {
     const detailButton = this.document.getElementById("detailButton");
     
     detailInput.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {            
+        if (event.keyCode === 13) {
             detailButton.click();
         }
     });
