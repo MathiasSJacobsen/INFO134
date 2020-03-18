@@ -26,6 +26,19 @@ class Population {
         return IDs;
     }
 
+    getInfo(municipalityNumber){
+        const elements = this.data.elementer;
+        for (let x in elements) {
+            if(elements[x]["kommunenummer"] === municipalityNumber) {
+                let info = elements[x];
+                info.Kommune = x;
+                                
+                return info;
+            }
+        }
+    }
+
+
     /**
      * Get municipality name from municipality number
      * @param {String} municipalityNumber Number of municipality
