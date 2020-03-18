@@ -45,7 +45,7 @@ function makeOverviewTable() {
             tRow.innerHTML = `<td>${municipality}</td>
                                 <td>${population.getNumber(municipality)}</td>
                                 <td>${population.getTotalPopulation(municipality)}
-                                <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`
+                                <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
             document.getElementById("overviewTable").appendChild(tRow);
         }
         bool = false;
@@ -83,11 +83,15 @@ function makeDetailOverview(value) {
     let nameElement = document.createElement("b");
     let infoELement = document.createElement("p");
 
-    nameElement.innerHTML = "<br>" + name;
-    infoELement.innerHTML = "Kommunenummer: " + number + "<br>" +
-                            "Befolkning: " + totalPopulation + "<br>" + 
-                            "Befolkningsvekst: " + populationGrowth + "%<br>" +
-                            "Utdanning: " + higherEducationQuantity + " (" + higherEducationPercent + "%)";
+    nameElement.appendChild(document.createTextNode(name));
+    infoELement.appendChild(document.createTextNode("Kommunenummer: " + number));
+    infoELement.appendChild(document.createElement("br"));
+    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation));
+    infoELement.appendChild(document.createElement("br"));
+    infoELement.appendChild(document.createTextNode("Befolkningsvekst: " + populationGrowth + "%"));
+    infoELement.appendChild(document.createElement("br"));
+    infoELement.appendChild(document.createTextNode("Utdanning: " + higherEducationQuantity + " (" + higherEducationPercent + "%)"));
+
     overview.appendChild(nameElement);
     overview.appendChild(infoELement);
 }
