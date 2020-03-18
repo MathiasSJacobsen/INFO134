@@ -141,7 +141,7 @@ function getDetails() {
     makeDetailYearTable(number);
 }
 /**
- * Adds that the user can use 'enter' on submission buttons
+ * Adds that the user can use 'enter' on submit-buttons
  */
 window.onload = function() {
     const detailInput = this.document.getElementById("detailInput");
