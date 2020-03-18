@@ -8,6 +8,16 @@ class Population {
         this.loadData();
     }
 
+    getNames() {
+        const elements = this.data.elementer;
+        console.log(elements);
+        const names = [];
+        for (let x in elements){
+            names.push(x)
+        }
+        return names;
+    }
+
     /**
      * Get municipality name from municipality number
      * @param {String} municipalityNumber Number of municipality
