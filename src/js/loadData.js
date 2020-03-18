@@ -96,35 +96,46 @@ function makeDetailYearTable(number) {
     let municipality = population.getName(number);
     
     let tableHead = document.getElementById("detailTableHead");
-    tableHead.innerHTML = `<tr>
-                           <th>År</th>
-                           <th>Befolkning</th>
-                           <th>Sysselsatte</th>
-                           <th>Utdannede</th>
-                           </tr>`;
+    let tableHeadRow = document.createElement("tr");
+    let yearHeadElement = document.createElement("th");
+    let popHeadElement = document.createElement("th");
+    let empHeadElement = document.createElement("th");
+    let eduHeadElement = document.createElement("th");
+
+    yearHeadElement.appendChild(document.createTextNode("År"));
+    popHeadElement.appendChild(document.createTextNode("Befolkning"));
+    empHeadElement.appendChild(document.createTextNode("Sysselsatte"));
+    eduHeadElement.appendChild(document.createTextNode("Utdannede"));
+    
+    tableHeadRow.appendChild(yearHeadElement);
+    tableHeadRow.appendChild(popHeadElement);
+    tableHeadRow.appendChild(empHeadElement);
+    tableHeadRow.appendChild(eduHeadElement);
+
+    tableHead.appendChild(tableHeadRow);
 
     let tableBody = document.getElementById("detailTableBody");
     
     for (let year = 2007; year < 2018; year++) {
 
-        let tRow = document.createElement("tr");
+        let tableBodyRow = document.createElement("tr");
 
-        let yearElement = document.createElement("td");
-        let populationELement = document.createElement("td");
-        let employmentElement = document.createElement("td");
-        let educationElement = document.createElement("td");
+        let yearBodyElement = document.createElement("td");
+        let popBodyElement = document.createElement("td");
+        let empBodyElement = document.createElement("td");
+        let eduBodyElement = document.createElement("td");
 
-        yearElement.innerHTML = year;
-        populationELement.innerHTML = population.getTotalPopulation(municipality, year);
-        employmentElement.innerHTML = employment.getEmploymentPercent(municipality, year) + "%";
-        educationElement.innerHTML = education.getHigherEducationPercent(municipality, year) + "%";
+        yearBodyElement.appendChild(document.createTextNode(year));
+        popBodyElement.appendChild(document.createTextNode(population.getTotalPopulation(municipality, year)));
+        empBodyElement.appendChild(document.createTextNode(employment.getEmploymentPercent(municipality, year) + "%"));
+        eduBodyElement.appendChild(document.createTextNode(education.getHigherEducationPercent(municipality, year) + "%"));
 
-        tRow.appendChild(yearElement);
-        tRow.appendChild(populationELement);
-        tRow.appendChild(employmentElement);
-        tRow.appendChild(educationElement);
+        tableBodyRow.appendChild(yearBodyElement);
+        tableBodyRow.appendChild(popBodyElement);
+        tableBodyRow.appendChild(empBodyElement);
+        tableBodyRow.appendChild(eduBodyElement);
 
-        tableBody.appendChild(tRow);
+        tableBody.appendChild(tableBodyRow);
     }
 }
 
