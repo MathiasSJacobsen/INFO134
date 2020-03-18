@@ -8,6 +8,16 @@ class Education {
         this.loadData();
     }
 
+    getNames() {
+        const elements = this.data.elementer;
+        console.log(elements);
+        const names = [];
+        for (let x in elements){
+            names.push(x)
+        }
+        return names;
+    }
+
     getHigherEducationPercent(municipalityName, year=2017) {
         let masterMen = this.data.elementer[municipalityName.toString()]["04a"]["Menn"][year.toString()];
         let masterWomen = this.data.elementer[municipalityName.toString()]["04a"]["Kvinner"][year.toString()];
