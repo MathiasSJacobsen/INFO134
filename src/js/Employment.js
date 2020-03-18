@@ -27,6 +27,23 @@ class Employment {
         return IDs;
     }
 
+    getInfo(municipalityNumber){
+        const elements = this.data.elementer;
+        for (let x in elements) {
+            if(elements[x]["kommunenummer"] === municipalityNumber) {
+                const info = {
+                    Kommune : x,
+                    BeggeKjønn: elements[x]["Begge kjønn"],
+                    Menn: elements[x]["Menn"],
+                    Kvinner : elements[x]["Kvinner"],
+                    Kommunenummer: municipalityNumber
+                }
+                
+                return info;
+            }
+        }
+    }
+
     getEmploymentPercent(municipalityName, year=2018) {
         let employmentMen = this.data.elementer[municipalityName.toString()]["Menn"][year.toString()];
         let employmentWomen = this.data.elementer[municipalityName.toString()]["Kvinner"][year.toString()];

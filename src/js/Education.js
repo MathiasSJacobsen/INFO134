@@ -30,10 +30,11 @@ class Education {
         const elements = this.data.elementer;
         for (let x in elements) {
             if(elements[x]["kommunenummer"] === municipalityNumber) {
-                return elements[x];
+                let info = elements[x];
+                info.Kommune = x;
+                return info;
             }
         }
-
     }
 
     getHigherEducationPercent(municipalityName, year=2017) {
