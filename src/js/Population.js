@@ -17,6 +17,14 @@ class Population {
         }
         return names;
     }
+    getIDs() {
+        const elements = this.data.elementer;
+        let IDs = [];
+        for (let x in elements) {
+            IDs.push(elements[x]["kommunenummer"]);
+        }
+        return IDs;
+    }
 
     /**
      * Get municipality name from municipality number
