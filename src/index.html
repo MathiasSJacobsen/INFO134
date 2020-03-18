@@ -22,27 +22,30 @@
   <br>
   <!----Introduksjon---->
   <div id="intro" class="content">
-
-    <h1>Introduksjon</h1>
-    <p>Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen
-      detaljer er fjernet. Dataene inneholder derfor noen unøyaktigheter.
-      <br>
-      Dataene fra dette dataettet er hentet fra:
+    <div id="top">
+      <h1>Introduksjon</h1>
+      <p>Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen
+        detaljer er fjernet. Dataene inneholder derfor noen unøyaktigheter.
+        <br>
+        Dataene fra dette dataettet er hentet fra:
+      </p>
       <ul>
         <li><a href="http://data.ssb.no/api/v0/dataset/104857?lang=no">Befolkning</a></li>
         <li><a href="http://data.ssb.no/api/v0/dataset/100145?lang=no">Sysselsatte</a></li>
         <li><a href="http://data.ssb.no/api/v0/dataset/85432?lang=no">Utdanning</a></li>
       </ul>
-    </p>
+    </div>
   </div>
 
-<!---Oversikt--->
+  <!---Oversikt--->
   <div id="overviewDiv" class="content" hidden>
-    <h1>Oversikt</h1>
-    <p>Her finner du oversikt over alle kommunene med siste måling av total befolkning og befolkningsvekst.</p>
-    <table id='overviewTable'>
+    <span id="top">
+      <h1>Oversikt</h1>
+      <p>Her finner du oversikt over alle kommunene med siste måling av total befolkning og befolkningsvekst.</p>
+    </span>
+    <table id='table'>
       <thead>
-        <tr>
+        <tr id="row">
           <th>Navn</th>
           <th>Kommunenummer</th>
           <th>Befolkning</th>
@@ -52,37 +55,39 @@
     </table>
   </div>
 
-<!---Details-->
+  <!---Details-->
   <div id="detailsDiv" class="content" hidden>
-    <span id="detailsInput">
+    <span id="top">
       <h1>Detaljer</h1>
       <label for="detailNumber">Kommunenummer eller kommunenavn:</label><br>
       <input type="text" id="detailNumber" placeholder="F.eks. 0101 eller Oslo">
       <button onclick="getDetails()" id="detailButton">Søk</button>
     </span>
-    <div id="detailContent">
+    <div id="top">
       <span id="detailOverview">
       </span>
-      <table id="detailTable">
+      <table id="table">
         <thead id="detailTableHead">
         </thead>
         <tbody id="detailTableBody">
         </tbody>
       </table>
-  </div>
+    </div>
   </div>
 
-<!---Sammenlikning--->
+  <!---Sammenlikning--->
   <div id="compairDiv" class="content" hidden>
-    <h1>Sammenligning</h1>
-    <p>Skriv inn to kommunenummere for å kunne sammenlikne dem.</p>
-    <input type="text" name="compairInput1" id="compairInput1">
-    <input type="text" name="compairInput2" id="compairInput2">
-    <button type="submit">Sammenlikne</button>
+    <div id="top">
+      <h1>Sammenligning</h1>
+      <p>Skriv inn to kommunenummere for å kunne sammenligne dem.</p>
+      <input type="text" name="compairInput1" id="compairInput1">
+      <input type="text" name="compairInput2" id="compairInput2">
+      <button type="submit">Sammenligne</button>
+    </div>
   </div>
 
   <footer>INFO134 OPPGAVE</footer>
-  
+
   <script type="text/javascript" src="js/DataLoader.js"></script>
   <script type="text/javascript" src="js/Population.js"></script>
   <script type="text/javascript" src="js/Education.js"></script>

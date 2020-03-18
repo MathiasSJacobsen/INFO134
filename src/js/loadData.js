@@ -42,11 +42,12 @@ async function makeOverviewTable() {
         let municipalities = population.data.elementer;
         for (let municipality in municipalities) {
             let tRow = document.createElement("tr");
+            tRow.id = "row"
             tRow.innerHTML = `<td>${municipality}</td>
                                 <td>${population.getNumber(municipality)}</td>
                                 <td>${population.getTotalPopulation(municipality)}
                                 <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
-            document.getElementById("overviewTable").appendChild(tRow);
+            document.getElementById("table").appendChild(tRow);
         }
         bool = false;
     }
@@ -101,9 +102,9 @@ function makeDetailOverview(value) {
 
 function makeDetailYearTable(number) {
     let municipality = population.getName(number);
-    
-    let tableHead = document.getElementById("detailTableHead");
+    let tableBody = document.getElementById("detailTableBody");
     let tableHeadRow = document.createElement("tr");
+    tableHeadRow.id = "row"
     let yearHeadElement = document.createElement("th");
     let popHeadElement = document.createElement("th");
     let empHeadElement = document.createElement("th");
@@ -119,14 +120,14 @@ function makeDetailYearTable(number) {
     tableHeadRow.appendChild(empHeadElement);
     tableHeadRow.appendChild(eduHeadElement);
 
-    tableHead.appendChild(tableHeadRow);
+    tableBody.appendChild(tableHeadRow);
 
-    let tableBody = document.getElementById("detailTableBody");
+    
     
     for (let year = 2007; year < 2018; year++) {
 
         let tableBodyRow = document.createElement("tr");
-
+        tableBodyRow.id = "row"
         let yearBodyElement = document.createElement("td");
         let popBodyElement = document.createElement("td");
         let empBodyElement = document.createElement("td");
@@ -162,6 +163,18 @@ function getDetails() {
 }
 
 
-window.onload = setInterval(function () {
-    makeOverviewTable()
-},200)
+
+window.onload = function() {
+    setInterval(function () {
+        makeOverviewTable()
+    },200)
+    const input = this.document.getElementById("detailNumber");
+    const button = this.document.getElementById("detailButton");
+    
+    input.addEventListener("keyup", function(event) {
+        
+        if (event.keyCode === 13) {            
+            button.click();
+        }
+    });
+}
