@@ -8,24 +8,6 @@ let population = new Population(populationURL);
 let employment = new Employment(employmentURL);
 let education = new Education(educationURL);
 
-
-function getFullName(municipalityName) {
-    for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
-            return municipality;
-        }
-    }
-}
-
-function validName(municipalityName) {
-    for (let municipality in population.data.elementer) {
-        if (municipality.split(" ")[0].toLowerCase() === municipalityName.toLowerCase()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 function validNumber(municipalityNumber) {
     for (let municipality in population.data.elementer) {
         if (population.data.elementer[municipality.toString()].kommunenummer === municipalityNumber) {
@@ -71,8 +53,7 @@ function clearDetails() {
     document.getElementById("detailTableBody").innerHTML="";
 }
 
-function makeDetailOverview(value) {
-    let number = value;
+function makeDetailOverview(number) {
     let name = population.getName(number);
     let totalPopulation = population.getTotalPopulation(name);
     let populationGrowth = population.getPopulationGrowth(name);
@@ -144,18 +125,15 @@ function makeDetailYearTable(number) {
 }
 
 function getDetails() {
-    let value = document.getElementById("detailNumber").value;
-    if (!validNumber(value)) {
-        if (!validName(value)) {
-            alert("Ugyldig nummer/navn");
-            return;
-        }
-        value = population.getNumber(getFullName(value));
+    let number = document.getElementById("detailNumber").value;
+    if (!validNumber(number)) {
+        alert("Ugyldig nummer/navn");
+        return;
     }
 
     clearDetails();
-    makeDetailOverview(value);
-    makeDetailYearTable(value);
+    makeDetailOverview(number);
+    makeDetailYearTable(number);
 }
 
 window.onload = function() {
