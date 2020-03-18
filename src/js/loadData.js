@@ -158,13 +158,3 @@ function getDetails() {
     makeDetailOverview(value);
     makeDetailYearTable(value);
 }
-
-//TODO: HVORFOR FUNKER IKKE DETTE?
-let input = document.getElementById("detailNumber");
-
-input.addEventListener("keyup", function(event){
-    if (event.keyCode === 13){
-        document.getElementById("detailButton").click();
-        
-    }
-});
