@@ -13,7 +13,7 @@ li {
 
 
 li:hover {
-    color: red;
+    color: white;
     cursor: pointer;
 }
 
@@ -40,7 +40,7 @@ header {
     background-color: dimgray;
 }
 header li {
-    color: white;
+    color: rgb(218, 218, 218);
     padding-top: 0px;
     padding-bottom: 15px;
 }

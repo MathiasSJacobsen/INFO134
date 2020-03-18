@@ -151,7 +151,6 @@ window.onload = function() {
     setInterval(function () {
         makeOverviewTable()
     },200)
-    
     const detailInput = this.document.getElementById("detailInput");
     const detailButton = this.document.getElementById("detailButton");
     
