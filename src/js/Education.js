@@ -12,7 +12,7 @@ class Education {
         const elements = this.data.elementer;
         let names = [];
         for (let municipality in elements){
-            names.push(municipality)
+            names.push(municipality);
         }
         return names;
     }

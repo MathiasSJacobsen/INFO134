@@ -10,10 +10,9 @@ class Population {
 
     getNames() {
         const elements = this.data.elementer;
-        console.log(elements);
         const names = [];
         for (let municipality in elements){
-            names.push(municipality)
+            names.push(municipality);
         }
         return names;
     }
