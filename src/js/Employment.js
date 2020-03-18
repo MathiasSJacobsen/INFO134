@@ -10,10 +10,9 @@ class Employment {
 
     getNames() {
         const elements = this.data.elementer;
-        console.log(elements);
         const names = [];
-        for (let x in elements){
-            names.push(x)
+        for (let municipality in elements){
+            names.push(municipality);
         }
         return names;
     }
@@ -21,23 +20,23 @@ class Employment {
     getIDs() {
         const elements = this.data.elementer;
         let IDs = [];
-        for (let x in elements) {
-            IDs.push(elements[x]["kommunenummer"]);
+        for (let municipality in elements) {
+            IDs.push(elements[municipality]["kommunenummer"]);
         }
         return IDs;
     }
 
     getInfo(municipalityNumber){
         const elements = this.data.elementer;
-        for (let x in elements) {
-            if(elements[x]["kommunenummer"] === municipalityNumber) {
+        for (let municipality in elements) {
+            if(elements[municipality]["kommunenummer"] === municipalityNumber) {
                 const info = {
-                    Kommune : x,
-                    BeggeKjønn: elements[x]["Begge kjønn"],
-                    Menn: elements[x]["Menn"],
-                    Kvinner : elements[x]["Kvinner"],
+                    Kommune : municipality,
+                    BeggeKjønn: elements[municipality]["Begge kjønn"],
+                    Menn: elements[municipality]["Menn"],
+                    Kvinner : elements[municipality]["Kvinner"],
                     Kommunenummer: municipalityNumber
-                }
+                };
                 
                 return info;
             }

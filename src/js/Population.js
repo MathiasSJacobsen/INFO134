@@ -12,27 +12,27 @@ class Population {
         const elements = this.data.elementer;
         console.log(elements);
         const names = [];
-        for (let x in elements){
-            names.push(x)
+        for (let municipality in elements){
+            names.push(municipality)
         }
         return names;
     }
     getIDs() {
         const elements = this.data.elementer;
         let IDs = [];
-        for (let x in elements) {
-            IDs.push(elements[x]["kommunenummer"]);
+        for (let municipality in elements) {
+            IDs.push(elements[municipality]["kommunenummer"]);
         }
         return IDs;
     }
 
     getInfo(municipalityNumber){
         const elements = this.data.elementer;
-        for (let x in elements) {
-            if(elements[x]["kommunenummer"] === municipalityNumber) {
-                let info = elements[x];
-                info.Kommune = x;
-                                
+        for (let municipality in elements) {
+            if(elements[municipality]["kommunenummer"] === municipalityNumber) {
+                let info = elements[municipality];
+                info.Kommune = municipality;
+
                 return info;
             }
         }
