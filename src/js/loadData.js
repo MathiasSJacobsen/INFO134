@@ -56,6 +56,11 @@ function clearDetails() {
     document.getElementById("detailTableBody").innerHTML="";
 }
 
+function clearCompare() {
+    document.getElementById("municipalityOne").innerHTML="";
+    document.getElementById("municipalityTwo").innerHTML="";
+}
+
 function makeDetailOverview(number) {
     let name = population.getName(number);
     let totalPopulation = population.getTotalPopulation(name);
@@ -146,15 +151,31 @@ window.onload = function() {
     setInterval(function () {
         makeOverviewTable()
     },200)
-    const input = this.document.getElementById("detailNumber");
-    const button = this.document.getElementById("detailButton");
     
-    input.addEventListener("keyup", function(event) {
-        
+    const detailInput = this.document.getElementById("detailInput");
+    const detailButton = this.document.getElementById("detailButton");
+    
+    detailInput.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {            
-            button.click();
+            detailButton.click();
         }
     });
+
+    // const compareInput1 = this.document.getElementById("compareInput1");
+    // const compareInput2 = this.document.getElementById("compareInput2");
+    // const compareButton = this.document.getElementById("detailButton");
+
+    // compareInput1.addEventListener("keyup", function(event) {
+    //     if (event.keyCode === 13) {            
+    //         compareButton.click();
+    //     }
+    // });
+
+    // compareInput2.addEventListener("keyup", function(event) {
+    //     if (event.keyCode === 13) {            
+    //         compareButton.click();
+    //     }
+    // });
 }
 
 function getEducationStats(municipalityNumber, nr) {
@@ -222,6 +243,7 @@ function compare(){
         return;
     }
 
+    clearCompare();
     getEducationStats(input1, 1);
     getEducationStats(input2, 2);
 
