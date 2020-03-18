@@ -99,8 +99,7 @@ function makeDetailOverview(value) {
 
 function makeDetailYearTable(number) {
     let municipality = population.getName(number);
-    
-    let tableHead = document.getElementById("detailTableHead");
+    let tableBody = document.getElementById("detailTableBody");
     let tableHeadRow = document.createElement("tr");
     let yearHeadElement = document.createElement("th");
     let popHeadElement = document.createElement("th");
@@ -117,9 +116,9 @@ function makeDetailYearTable(number) {
     tableHeadRow.appendChild(empHeadElement);
     tableHeadRow.appendChild(eduHeadElement);
 
-    tableHead.appendChild(tableHeadRow);
+    tableBody.appendChild(tableHeadRow);
 
-    let tableBody = document.getElementById("detailTableBody");
+    
     
     for (let year = 2007; year < 2018; year++) {
 
