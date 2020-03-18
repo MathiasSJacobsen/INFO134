@@ -11,7 +11,7 @@ class Employment {
     getEmploymentPercent(municipalityName, year=2018) {
         let employmentMen = this.data.elementer[municipalityName]["Menn"][year];
         let employmentWomen = this.data.elementer[municipalityName]["Kvinner"][year];
-        let total = new Number(employmentMen + employmentWomen);
+        let total = new Number((employmentMen + employmentWomen)/2);
         return total.toFixed(2);
     }
 

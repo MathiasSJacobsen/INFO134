@@ -54,27 +54,28 @@
 
 <!---Details-->
   <div id="detailsDiv" class="content" hidden>
-    <br><br>
-    <span id="detailsSpan">
+    <span id="detailsInput">
       <h1>Detaljer</h1>
       <label for="detailNumber">Kommunenummer eller kommunenavn:</label><br>
       <input type="text" id="detailNumber" placeholder="F.eks. 0101 eller Oslo">
       <button onclick="getDetails()" id="detailButton">Søk</button>
     </span>
-    <br><br>
-    <table id="detailTable" hidden>
-      <thead id="detailHead">
-        <tr>
-          <th>Navn</th>
-          <th>Kommunenummer</th>
-          <th>Befolkning</th>
-          <th>Befolkningsvekst</th>
-          <th>Høyere utdanning</th>
-        </tr>
-      </thead>
-      <tbody id="detailBody">
-      </tbody>
-    </table>
+    <div id="detailContent">
+      <span id="detailOverview">
+      </span>
+      <table id="detailTable">
+        <thead>
+          <tr>
+            <th>År</th>
+            <th>Befolkning</th>
+            <th>Sysselsatte</th>
+            <th>Utdannede</th>
+          </tr>
+        </thead>
+        <tbody id="detailTableBody">
+        </tbody>
+      </table>
+  </div>
   </div>
 
 <!---Sammenlikning--->

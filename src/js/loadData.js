@@ -42,39 +42,74 @@ function toggleHidden(id) {
 }
 
 function clearDetails() {
-    let tBody = document.getElementById("detailBody");
-    tBody.innerHTML="";
+    document.getElementById("detailOverview").innerHTML="";
+    document.getElementById("detailTableBody").innerHTML="";
 }
 
 function getDetails() {
-    let number = document.getElementById("detailNumber").value;
-    if (!validNumber(number)) {
-        if (!validName(number)) {
+    let value = document.getElementById("detailNumber").value;
+
+    if (!validNumber(value)) {
+        if (!validName(value)) {
             alert("Ugyldig nummer/navn");
             return;
         }
-        number = population.getNumber(getFullName(number));
+        value = population.getNumber(getFullName(value));
     }
+
+    clearDetails();
+    makeDetailOverview(value);
+    makeDetailYearTable(value);
+}
+
+function makeDetailOverview(value) {
+    let number = value;
     let name = population.getName(number);
     let totalPopulation = population.getTotalPopulation(name);
     let populationGrowth = population.getPopulationGrowth(name);
     let higherEducationQuantity = education.getHigherEducationQuantity(name);
     let higherEducationPercent = education.getHigherEducationPercent(name);
 
-    clearDetails();
-    let tRow = document.createElement("tr")
-    tRow.innerHTML = `<td>${name}</td>
-                      <td>${number}</td>
-                      <td>${totalPopulation}</td>
-                      <td>${populationGrowth + "%"}</td>
-                      <td>${higherEducationQuantity} (${higherEducationPercent}%)</td>`
-    document.getElementById("detailBody").appendChild(tRow);
+    let overview = document.getElementById("detailOverview");
+    
+    let nameElement = document.createElement("b");
+    let infoELement = document.createElement("p");
 
-    document.getElementById("detailTable").hidden = false;
+    nameElement.innerHTML = "<br>" + name;
+    infoELement.innerHTML = "Kommunenummer: " + number + "<br>" +
+                            "Befolkning: " + totalPopulation + "<br>" + 
+                            "Befolkningsvekst: " + populationGrowth + "%<br>" +
+                            "Utdanning: " + higherEducationQuantity + " (" + higherEducationPercent + "%)";
+    overview.appendChild(nameElement);
+    overview.appendChild(infoELement);
 }
 
-function makeDetailTable(municipalityName) {
+function makeDetailYearTable(number) {
+    let municipality = population.getName(number);
+    let tableBody = document.getElementById("detailTableBody");
+    console.log(tableBody);
+    
+    for (let year = 2007; year < 2018; year++) {
 
+        let trow = document.createElement("tr");
+
+        let yearElement = document.createElement("td");
+        let populationELement = document.createElement("td");
+        let employmentElement = document.createElement("td");
+        let educationElement = document.createElement("td");
+
+        yearElement.innerHTML = year;
+        populationELement.innerHTML = population.getTotalPopulation(municipality, year);
+        employmentElement.innerHTML = employment.getEmploymentPercent(municipality, year) + "%";
+        educationElement.innerHTML = education.getHigherEducationPercent(municipality, year) + "%";
+
+        trow.appendChild(yearElement);
+        trow.appendChild(populationELement);
+        trow.appendChild(employmentElement);
+        trow.appendChild(educationElement);
+
+        tableBody.appendChild(trow);
+    }
 }
 
 function validName(municipalityName) {
