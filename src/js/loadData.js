@@ -37,7 +37,7 @@ function validNumber(municipalityNumber) {
 
 let bool = true;
 
-function antallfolk() {
+function makeOverviewTable() {
     if (bool) {
         let municipalities = population.data.elementer;
         for (let municipality in municipalities) {
