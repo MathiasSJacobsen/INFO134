@@ -101,7 +101,7 @@ function makeDetailYearTable(number) {
 
     
     
-    for (let year = 2007; year < 2018; year++) {
+    for (let year = 2017; year > 2006; year--) {
 
         let tableBodyRow = document.createElement("tr");
 
