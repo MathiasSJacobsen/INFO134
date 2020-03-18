@@ -54,3 +54,6 @@ footer {
     padding-bottom: 5px;
     clear: both;
 }
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}

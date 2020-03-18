@@ -37,7 +37,7 @@ function validNumber(municipalityNumber) {
 
 let bool = true;
 
-function makeOverviewTable() {
+async function makeOverviewTable() {
     if (bool) {
         let municipalities = population.data.elementer;
         for (let municipality in municipalities) {
@@ -51,6 +51,8 @@ function makeOverviewTable() {
         bool = false;
     }
 }
+
+
 
 /**
  * Hides the content that wasnt clicked on, and puts that content on the screen.
@@ -158,3 +160,8 @@ function getDetails() {
     makeDetailOverview(value);
     makeDetailYearTable(value);
 }
+
+
+window.onload = setInterval(function () {
+    makeOverviewTable()
+},200)
