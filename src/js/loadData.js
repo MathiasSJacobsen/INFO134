@@ -67,6 +67,7 @@ function toggleHidden(id) {
 
 function clearDetails() {
     document.getElementById("detailOverview").innerHTML="";
+    document.getElementById("detailTableHead").innerHTML="";
     document.getElementById("detailTableBody").innerHTML="";
 }
 
