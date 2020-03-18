@@ -26,6 +26,16 @@ class Education {
         return IDs;
     }
 
+    getInfo(municipalityNumber){
+        const elements = this.data.elementer;
+        for (let x in elements) {
+            if(elements[x]["kommunenummer"] === municipalityNumber) {
+                return elements[x];
+            }
+        }
+
+    }
+
     getHigherEducationPercent(municipalityName, year=2017) {
         let masterMen = this.data.elementer[municipalityName.toString()]["04a"]["Menn"][year.toString()];
         let masterWomen = this.data.elementer[municipalityName.toString()]["04a"]["Kvinner"][year.toString()];
