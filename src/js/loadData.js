@@ -9,18 +9,30 @@ let employment = new Employment(employmentURL);
 let education = new Education(educationURL);
 
 function validNumber(municipalityNumber) {
-    for (let municipality in population.data.elementer) {
-        if (population.data.elementer[municipality.toString()].kommunenummer === municipalityNumber) {
+    for (let municipality in population.getIDs()) {
+        if (population.getIDs()[municipality] === municipalityNumber) {
             return true;
         }
     }
     return false;
 }
 
-let bool = true;
+/**
+ * The loading message should be removed after the education element is loaded. Since that is the last one to be loaded.
+ */
+function removeLoadingMessage(){
+    if (typeof education === "object" && typeof education.data === "object"){
+        toggleHidden("intro")
+    } else {
+        setTimeout(() => {
+            removeLoadingMessage()
+        }, 10);
+    }
+}
 
-async function makeOverviewTable() {
-    if (bool) {
+
+function makeOverviewTable() {
+    if (typeof population === 'object' && typeof population.data === 'object') {
         let municipalities = population.data.elementer;
         for (let municipality in municipalities) {
             let tRow = document.createElement("tr");
@@ -31,9 +43,15 @@ async function makeOverviewTable() {
                                 <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
             document.getElementById("table").appendChild(tRow);
         }
-        bool = false;
+        return
+    }
+    else {
+        setTimeout(() => {
+            makeOverviewTable()
+        }, 200);
     }
 }
+
 
 
 
@@ -51,9 +69,9 @@ function toggleHidden(id) {
 }
 
 function clearDetails() {
-    document.getElementById("detailOverview").innerHTML="";
-    document.getElementById("detailTableHead").innerHTML="";
-    document.getElementById("detailTableBody").innerHTML="";
+    document.getElementById("detailOverview").innerHTML = "";
+    document.getElementById("detailTableHead").innerHTML = "";
+    document.getElementById("detailTableBody").innerHTML = "";
 }
 
 function clearCompare() {
@@ -72,14 +90,14 @@ function makeDetailOverview(number) {
     let employmentPercent = employment.getEmploymentPercent(name);
 
     let overview = document.getElementById("detailOverview");
-    
+
     let nameElement = document.createElement("b");
     let infoELement = document.createElement("p");
 
     nameElement.appendChild(document.createTextNode(name));
     infoELement.appendChild(document.createTextNode("Kommunenummer: " + number));
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation  + " (2018)"));
+    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation + " (2018)"));
     infoELement.appendChild(document.createElement("br"));
     infoELement.appendChild(document.createTextNode("Sysselsatte: " + employmentQuantity + " / " + employmentPercent + " % (2018)"));
     infoELement.appendChild(document.createElement("br"));
@@ -103,7 +121,7 @@ function makeDetailYearTable(number) {
     popHeadElement.appendChild(document.createTextNode("Befolkning"));
     empHeadElement.appendChild(document.createTextNode("Sysselsatte"));
     eduHeadElement.appendChild(document.createTextNode("Utdannede"));
-    
+
     tableHeadRow.appendChild(yearHeadElement);
     tableHeadRow.appendChild(popHeadElement);
     tableHeadRow.appendChild(empHeadElement);
@@ -111,8 +129,8 @@ function makeDetailYearTable(number) {
 
     tableBody.appendChild(tableHeadRow);
 
-    
-    
+
+
     for (let year = 2017; year > 2006; year--) {
 
         let tableBodyRow = document.createElement("tr");
@@ -150,15 +168,14 @@ function getDetails() {
 /**
  * Adds that the user can use 'enter' on submit-buttons
  */
-window.onload = function() {
-    setInterval(function () {
-        makeOverviewTable()
-    },200)
+window.onload = function () {
+    removeLoadingMessage()
+    makeOverviewTable()
     const detailInput = this.document.getElementById("detailInput");
     const detailButton = this.document.getElementById("detailButton");
-    
-    detailInput.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {            
+
+    detailInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
             detailButton.click();
         }
     });
@@ -167,14 +184,14 @@ window.onload = function() {
     const compareInput2 = this.document.getElementById("compareInput2");
     const compareButton = this.document.getElementById("compareButton");
 
-    compareInput1.addEventListener("keyup", function(event) {
-         if (event.keyCode === 13) {            
-             compareButton.click();
-         }
+    compareInput1.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            compareButton.click();
+        }
     });
 
-     compareInput2.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {            
+    compareInput2.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
             compareButton.click();
         }
     });
@@ -199,7 +216,7 @@ function getEducationStats(municipalityNumber, nr) {
     catHeadElement.appendChild(document.createTextNode("Kategori"));
     menHeadElement.appendChild(document.createTextNode("Menn"));
     womenHeadElement.appendChild(document.createTextNode("Kvinner"));
-    
+
     table.appendChild(caption);
     tableRow.appendChild(catHeadElement);
     tableRow.appendChild(menHeadElement);
@@ -207,8 +224,8 @@ function getEducationStats(municipalityNumber, nr) {
 
     table.appendChild(tableRow);
 
-    for(let cat in education.data.elementer[municipality]){
-        
+    for (let cat in education.data.elementer[municipality]) {
+
         if (cat === "kommunenummer") {
             continue;
         }
@@ -219,8 +236,8 @@ function getEducationStats(municipalityNumber, nr) {
         let womenElement = document.createElement("td");
 
         catElement.appendChild(document.createTextNode(cat + ": " + education.getCategory(cat)));
-        menElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Menn")+ "%"));
-        womenElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Kvinner")+"%"));
+        menElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Menn") + "%"));
+        womenElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Kvinner") + "%"));
 
         tRow.appendChild(catElement);
         tRow.appendChild(menElement);
@@ -231,15 +248,15 @@ function getEducationStats(municipalityNumber, nr) {
 
 }
 
-function compare(){
+function compare() {
 
     const input1 = document.getElementById("compareInput1").value;
     const input2 = document.getElementById("compareInput2").value;
 
     if (!validNumber(input1)) {
-            alert("Ugyldig nummer på første søkefelt");
-            return;
-        }
+        alert("Ugyldig nummer på første søkefelt");
+        return;
+    }
     if (!validNumber(input2)) {
         alert("Ugyldig nummer på andre søkefelt");
         return;
