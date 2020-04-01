@@ -9,8 +9,8 @@ let employment = new Employment(employmentURL);
 let education = new Education(educationURL);
 
 function validNumber(municipalityNumber) {
-    for (let municipality in population.data.elementer) {
-        if (population.data.elementer[municipality.toString()].kommunenummer === municipalityNumber) {
+    for (let municipality in population.getIDs()) {
+        if (population.getIDs()[municipality] === municipalityNumber) {
             return true;
         }
     }
