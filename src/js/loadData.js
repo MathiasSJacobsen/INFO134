@@ -17,6 +17,18 @@ function validNumber(municipalityNumber) {
     return false;
 }
 
+/**
+ * The loading message should be removed after the education element is loaded. Since that is the last one to be loaded.
+ */
+function removeLoadingMessage(){
+    if (typeof education === "object" && typeof education.data === "object"){
+        toggleHidden("intro")
+    } else {
+        setTimeout(() => {
+            removeLoadingMessage()
+        }, 10);
+    }
+}
 
 
 function makeOverviewTable() {
@@ -36,7 +48,6 @@ function makeOverviewTable() {
     else {
         setTimeout(() => {
             makeOverviewTable()
-            console.log("Hei")
         }, 200);
     }
 }
@@ -157,6 +168,7 @@ function getDetails() {
  * Adds that the user can use 'enter' on submit-buttons
  */
 window.onload = function () {
+    removeLoadingMessage()
     makeOverviewTable()
     const detailInput = this.document.getElementById("detailInput");
     const detailButton = this.document.getElementById("detailButton");
