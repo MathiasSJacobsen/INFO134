@@ -22,7 +22,7 @@
   <br>
   <!----Introduksjon---->
   <div id="intro" class="content" hidden>
-    <div id="top">
+    <div class="top">
       <h1>Introduksjon</h1>
       <p id="information">Her finner du informasjon om Norges befolkning. Alle datasettene er i utgangspunktet hentet fra SSB, men noen
         detaljer er fjernet. Dataene inneholder derfor noen unøyaktigheter.
@@ -39,7 +39,7 @@
 
   <!---Oversikt--->
   <div id="overviewDiv" class="content" hidden>
-    <span id="top">
+    <span class="top">
       <h1>Oversikt</h1>
       <p>Her finner du oversikt over alle kommunene med siste måling av total befolkning og befolkningsvekst.</p>
     </span>
@@ -57,13 +57,13 @@
 
   <!---Details-->
   <div id="detailsDiv" class="content" hidden>
-    <span id="top">
+    <span class="top">
       <h1>Detaljer</h1>
       <label for="detailNumber">Kommunenummer eller kommunenavn:</label><br>
       <input type="text" id="detailInput" placeholder="F.eks. 0101">
       <button type="submit" id="detailButton" onclick="getDetails()">Søk</button>
     </span>
-    <div id="top">
+    <div class="top">
       <span id="detailOverview">
       </span>
       <table id="table">
@@ -77,7 +77,7 @@
 
   <!---Sammenlikning--->
   <div id="compairDiv" class="content" hidden>
-    <div id="top">
+    <div class="top">
       <h1>Sammenligning</h1>
       <p>Skriv inn to kommunenummere for å kunne sammenligne dem.</p>
       <input type="text" name="compareInput1" id="compareInput1" placeholder="F.eks. 0101">
@@ -96,7 +96,7 @@
   </div>
   
   <div id="loadingGIF" class="content">
-    <h3 id="top">Laster inn datasettene...</h3>
+    <h3 class="top">Laster inn datasettene...</h3>
     <img src="assets\loadingGIF.gif" alt="LoadingGIF">
   </div>
 
