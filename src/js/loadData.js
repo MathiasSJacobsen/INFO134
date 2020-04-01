@@ -20,16 +20,24 @@ function validNumber(municipalityNumber) {
 
 
 function makeOverviewTable() {
-    console.log("Making table")
-    let municipalities = population.data.elementer;
-    for (let municipality in municipalities) {
-        let tRow = document.createElement("tr");
-        tRow.id = "row"
-        tRow.innerHTML = `<td>${municipality}</td>
+    if (typeof population === 'object' && typeof population.data === 'object') {
+        let municipalities = population.data.elementer;
+        for (let municipality in municipalities) {
+            let tRow = document.createElement("tr");
+            tRow.id = "row"
+            tRow.innerHTML = `<td>${municipality}</td>
                                 <td>${population.getNumber(municipality)}</td>
                                 <td>${population.getTotalPopulation(municipality)}
                                 <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
-        document.getElementById("table").appendChild(tRow);
+            document.getElementById("table").appendChild(tRow);
+        }
+        return
+    }
+    else {
+        setTimeout(() => {
+            makeOverviewTable()
+            console.log("Hei")
+        }, 200);
     }
 }
 
@@ -149,9 +157,7 @@ function getDetails() {
  * Adds that the user can use 'enter' on submit-buttons
  */
 window.onload = function () {
-    setTimeout(function () {
-        makeOverviewTable()
-    }, 200)
+    makeOverviewTable()
     const detailInput = this.document.getElementById("detailInput");
     const detailButton = this.document.getElementById("detailButton");
 
