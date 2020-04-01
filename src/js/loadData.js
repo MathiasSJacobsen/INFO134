@@ -10,10 +10,14 @@ let education = new Education(educationURL);
 
 /**
  * The loading message should be removed after the education element is loaded. Since that is the last one to be loaded.
+ * Checks if the data is loaded and removes the loading message if so 
  */
 function removeLoadingMessage(){
-    if (typeof education === "object" && typeof education.data === "object"){
-        toggleHidden("intro")
+    let typeofEducationData = typeof education.data === "object";
+    let typeofPopulationData = typeof population.data === "object";
+    let typeofEmploymentData = typeof employment.data == "object";
+    if (typeofEducationData && typeofPopulationData && typeofEmploymentData){
+        toggleHidden("intro");
     } else {
         setTimeout(() => {
             removeLoadingMessage()
