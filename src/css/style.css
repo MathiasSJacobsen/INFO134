@@ -40,6 +40,10 @@ header li {
     padding-bottom: 15px;
 }
 
+.Headers {
+    font-family: cursive;
+}
+
 footer {
     position: fixed;
     width: 100%;
