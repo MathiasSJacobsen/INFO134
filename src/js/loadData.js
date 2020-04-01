@@ -65,6 +65,8 @@ function makeDetailOverview(number) {
     let populationGrowth = population.getPopulationGrowth(name);
     let higherEducationQuantity = education.getHigherEducationQuantity(name);
     let higherEducationPercent = education.getHigherEducationPercent(name);
+    let employmentQuantity = employment.getEmploymentQuantity(name);
+    let employmentPercent = employment.getEmploymentPercent(name);
 
     let overview = document.getElementById("detailOverview");
 
@@ -74,11 +76,11 @@ function makeDetailOverview(number) {
     nameElement.appendChild(document.createTextNode(name));
     infoELement.appendChild(document.createTextNode("Kommunenummer: " + number));
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation));
+    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation  + " (2018)"));
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Befolkningsvekst: " + populationGrowth + "%"));
+    infoELement.appendChild(document.createTextNode("Sysselsatte: " + employmentQuantity + " / " + employmentPercent + " % (2018)")); //TODO: Denne gir ikke det samme svaret som tabellen
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Utdanning: " + higherEducationQuantity + " (" + higherEducationPercent + "%)"));
+    infoELement.appendChild(document.createTextNode("Utdanning: " + higherEducationQuantity + " / " + higherEducationPercent + "% (2017)"));
 
     overview.appendChild(nameElement);
     overview.appendChild(infoELement);

@@ -1,6 +1,7 @@
 body {
     margin: 0px;
     font-family: Ubuntu;
+    background-color: rgb(230, 202, 177);
 }
 
 
@@ -99,4 +100,13 @@ th {
         display: flex;
         flex-direction: column;
     }
+}
+
+#information, #infolinks {
+    border-style: groove;
+    padding-top: 0.8%;
+    padding-bottom: 0.8%;
+    padding-left: 0.4%;
+    padding-right: 0.4%;
+
 }
