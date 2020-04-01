@@ -2,7 +2,7 @@
  * Make overview table for all municipalities
  */
 function makeOverviewTable() {
-    if (typeof population === 'object' && typeof population.data === 'object') {
+    if (typeof population.data === 'object') {
         let municipalities = population.data.elementer;
         for (let municipality in municipalities) {
             let tRow = document.createElement("tr");
@@ -13,11 +13,11 @@ function makeOverviewTable() {
                                 <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
             document.getElementById("table").appendChild(tRow);
         }
-        return;
+        return
     }
     else {
         setTimeout(() => {
-            makeOverviewTable();
+            makeOverviewTable()
         }, 200);
     }
 }
