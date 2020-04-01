@@ -19,7 +19,8 @@ function validNumber(municipalityNumber) {
 
 
 
-async function makeOverviewTable() {
+function makeOverviewTable() {
+    console.log("Making table")
     let municipalities = population.data.elementer;
     for (let municipality in municipalities) {
         let tRow = document.createElement("tr");
@@ -76,7 +77,7 @@ function makeDetailOverview(number) {
     nameElement.appendChild(document.createTextNode(name));
     infoELement.appendChild(document.createTextNode("Kommunenummer: " + number));
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation  + " (2018)"));
+    infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation + " (2018)"));
     infoELement.appendChild(document.createElement("br"));
     infoELement.appendChild(document.createTextNode("Sysselsatte: " + employmentQuantity + " / " + employmentPercent + " % (2018)")); //TODO: Denne gir ikke det samme svaret som tabellen
     infoELement.appendChild(document.createElement("br"));
@@ -148,7 +149,7 @@ function getDetails() {
  * Adds that the user can use 'enter' on submit-buttons
  */
 window.onload = function () {
-    setInterval(function () {
+    setTimeout(function () {
         makeOverviewTable()
     }, 200)
     const detailInput = this.document.getElementById("detailInput");
