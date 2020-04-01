@@ -17,23 +17,21 @@ function validNumber(municipalityNumber) {
     return false;
 }
 
-let bool = true;
+
 
 async function makeOverviewTable() {
-    if (bool) {
-        let municipalities = population.data.elementer;
-        for (let municipality in municipalities) {
-            let tRow = document.createElement("tr");
-            tRow.id = "row"
-            tRow.innerHTML = `<td>${municipality}</td>
+    let municipalities = population.data.elementer;
+    for (let municipality in municipalities) {
+        let tRow = document.createElement("tr");
+        tRow.id = "row"
+        tRow.innerHTML = `<td>${municipality}</td>
                                 <td>${population.getNumber(municipality)}</td>
                                 <td>${population.getTotalPopulation(municipality)}
                                 <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
-            document.getElementById("table").appendChild(tRow);
-        }
-        bool = false;
+        document.getElementById("table").appendChild(tRow);
     }
 }
+
 
 
 
@@ -51,14 +49,14 @@ function toggleHidden(id) {
 }
 
 function clearDetails() {
-    document.getElementById("detailOverview").innerHTML="";
-    document.getElementById("detailTableHead").innerHTML="";
-    document.getElementById("detailTableBody").innerHTML="";
+    document.getElementById("detailOverview").innerHTML = "";
+    document.getElementById("detailTableHead").innerHTML = "";
+    document.getElementById("detailTableBody").innerHTML = "";
 }
 
 function clearCompare() {
-    document.getElementById("municipalityOne").innerHTML="";
-    document.getElementById("municipalityTwo").innerHTML="";
+    document.getElementById("municipalityOne").innerHTML = "";
+    document.getElementById("municipalityTwo").innerHTML = "";
 }
 
 function makeDetailOverview(number) {
@@ -69,7 +67,7 @@ function makeDetailOverview(number) {
     let higherEducationPercent = education.getHigherEducationPercent(name);
 
     let overview = document.getElementById("detailOverview");
-    
+
     let nameElement = document.createElement("b");
     let infoELement = document.createElement("p");
 
@@ -100,7 +98,7 @@ function makeDetailYearTable(number) {
     popHeadElement.appendChild(document.createTextNode("Befolkning"));
     empHeadElement.appendChild(document.createTextNode("Sysselsatte"));
     eduHeadElement.appendChild(document.createTextNode("Utdannede"));
-    
+
     tableHeadRow.appendChild(yearHeadElement);
     tableHeadRow.appendChild(popHeadElement);
     tableHeadRow.appendChild(empHeadElement);
@@ -108,8 +106,8 @@ function makeDetailYearTable(number) {
 
     tableBody.appendChild(tableHeadRow);
 
-    
-    
+
+
     for (let year = 2017; year > 2006; year--) {
 
         let tableBodyRow = document.createElement("tr");
@@ -147,15 +145,15 @@ function getDetails() {
 /**
  * Adds that the user can use 'enter' on submit-buttons
  */
-window.onload = function() {
+window.onload = function () {
     setInterval(function () {
         makeOverviewTable()
-    },200)
+    }, 200)
     const detailInput = this.document.getElementById("detailInput");
     const detailButton = this.document.getElementById("detailButton");
-    
-    detailInput.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {            
+
+    detailInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
             detailButton.click();
         }
     });
@@ -164,14 +162,14 @@ window.onload = function() {
     const compareInput2 = this.document.getElementById("compareInput2");
     const compareButton = this.document.getElementById("compareButton");
 
-    compareInput1.addEventListener("keyup", function(event) {
-         if (event.keyCode === 13) {            
-             compareButton.click();
-         }
+    compareInput1.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            compareButton.click();
+        }
     });
 
-     compareInput2.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {            
+    compareInput2.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
             compareButton.click();
         }
     });
@@ -196,7 +194,7 @@ function getEducationStats(municipalityNumber, nr) {
     catHeadElement.appendChild(document.createTextNode("Kategori"));
     menHeadElement.appendChild(document.createTextNode("Menn"));
     womenHeadElement.appendChild(document.createTextNode("Kvinner"));
-    
+
     table.appendChild(caption);
     tableRow.appendChild(catHeadElement);
     tableRow.appendChild(menHeadElement);
@@ -204,8 +202,8 @@ function getEducationStats(municipalityNumber, nr) {
 
     table.appendChild(tableRow);
 
-    for(let cat in education.data.elementer[municipality]){
-        
+    for (let cat in education.data.elementer[municipality]) {
+
         if (cat === "kommunenummer") {
             continue;
         }
@@ -216,8 +214,8 @@ function getEducationStats(municipalityNumber, nr) {
         let womenElement = document.createElement("td");
 
         catElement.appendChild(document.createTextNode(cat + ": " + education.getCategory(cat)));
-        menElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Menn")+ "%"));
-        womenElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Kvinner")+"%"));
+        menElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Menn") + "%"));
+        womenElement.appendChild(document.createTextNode(education.getEducationPercent(municipality, cat, "Kvinner") + "%"));
 
         tRow.appendChild(catElement);
         tRow.appendChild(menElement);
@@ -228,15 +226,15 @@ function getEducationStats(municipalityNumber, nr) {
 
 }
 
-function compare(){
+function compare() {
 
     const input1 = document.getElementById("compareInput1").value;
     const input2 = document.getElementById("compareInput2").value;
 
     if (!validNumber(input1)) {
-            alert("Ugyldig nummer på første søkefelt");
-            return;
-        }
+        alert("Ugyldig nummer på første søkefelt");
+        return;
+    }
     if (!validNumber(input2)) {
         alert("Ugyldig nummer på andre søkefelt");
         return;
