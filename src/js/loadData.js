@@ -59,6 +59,7 @@ function clearDetails() {
 function clearCompare() {
     document.getElementById("municipalityOne").innerHTML="";
     document.getElementById("municipalityTwo").innerHTML="";
+    document.getElementById("compareWinner").innerHTML="";
 }
 
 function makeDetailOverview(number) {
@@ -80,7 +81,7 @@ function makeDetailOverview(number) {
     infoELement.appendChild(document.createElement("br"));
     infoELement.appendChild(document.createTextNode("Befolkning: " + totalPopulation  + " (2018)"));
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Sysselsatte: " + employmentQuantity + " / " + employmentPercent + " % (2018)")); //TODO: Denne gir ikke det samme svaret som tabellen
+    infoELement.appendChild(document.createTextNode("Sysselsatte: " + employmentQuantity + " / " + employmentPercent + " % (2018)"));
     infoELement.appendChild(document.createElement("br"));
     infoELement.appendChild(document.createTextNode("Utdanning: " + higherEducationQuantity + " / " + higherEducationPercent + "% (2017)"));
 
@@ -247,6 +248,41 @@ function compare(){
     clearCompare();
     getEducationStats(input1, 1);
     getEducationStats(input2, 2);
-
+    let winner = "";
+    if (getWinner(input1, input2)) {
+        winner = getWinner(input1, input2) + " har høyest score i flest kategorier";
+    } else {
+        winner = "Kommunene har like høy score"
+    }
+    let winnerNode = document.createTextNode(winner);
+    document.getElementById("compareWinner").appendChild(winnerNode);
 }
 
+function getWinner(mun1number, mun2number) {
+    let mun1name = population.getName(mun1number);
+    let mun2name = population.getName(mun2number);
+    let mun1points = 0;
+    let mun2points = 0;
+    for(let cat in education.data.elementer[mun1name]){
+        if (cat === "kommunenummer") {
+            continue;
+        }
+        if (new Number(education.getEducationPercent(mun1name, cat, "Menn")) > new Number(education.getEducationPercent(mun2name, cat, "Menn"))) {
+            mun1points++;
+        } else if (new Number(education.getEducationPercent(mun1name, cat, "Menn")) < new Number(education.getEducationPercent(mun2name, cat, "Menn"))){
+            mun2points++;
+        }
+        if (new Number(education.getEducationPercent(mun1name, cat, "Kvinner")) > new Number(education.getEducationPercent(mun2name, cat, "Kvinner"))) {
+            mun1points++;
+        } else if (new Number(education.getEducationPercent(mun1name, cat, "Kvinner")) < new Number(education.getEducationPercent(mun2name, cat, "Kvinner"))) {
+            mun2points++;
+        }
+    }
+    if (mun1points > mun2points) {
+        return mun1name;
+    } else if (mun1points < mun2points){
+        return mun2name;
+    } else {
+        return undefined;
+    }
+}
