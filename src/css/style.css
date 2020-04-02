@@ -4,7 +4,7 @@ body {
 }
 
 li {
-    float: left;
+   float: left;
     padding: 20px;
     list-style-type: none;
 }
@@ -41,7 +41,7 @@ header li {
 }
 
 h1 {
-    font-family: cursive;
+    font-family: Cambria Math;
 }
 
 footer {
@@ -104,7 +104,7 @@ th {
 }
 
 #information {
-    border-style: dotted;
+    border-style: double;
     background-color: rgba(150, 152, 245, 0.815);
     padding-top: 2%;
     padding-bottom: 2%;
@@ -120,4 +120,17 @@ margin-top: 15%;
 #compareWinner {
     text-align: center;
     margin-bottom: 8%;
+    font-family: Cambria Math;
+    text-decoration: underline double;
+    text-transform: uppercase;
+    text-decoration-color:  rgba(150, 152, 245, 0.815);
+    font-size: 200%;
+    margin-top: 0%;
 }
+
+
+
+
+
+
+
