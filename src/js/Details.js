@@ -135,17 +135,18 @@ function makeChart(cat, id){
     let data = document.getElementsByClassName("table");
     let lables = [];
     let datasets = [];
-    console.log(data);
+    let yAxesTitle = "Antall"
     for (let i = 1; i < data[0].rows.length; i++){
         lables.push(data[0].rows[i].cells[0].textContent)
         if (data[0].rows[i].cells[cat].textContent.includes("%")){
+            yAxesTitle = "Prosent"
             let temp = data[0].rows[i].cells[cat].textContent.substr(0,data[0].rows[i].cells[cat].textContent.length-1)
             datasets.push(temp)      
         }else {
             datasets.push(data[0].rows[i].cells[cat].textContent)
         }
     }
-    console.log(lables, datasets)
+    
     datasets.reverse()
     lables.reverse()
 
@@ -155,7 +156,13 @@ function makeChart(cat, id){
                 labels: lables,
                 datasets: [{
                     label: data[0].rows[0].cells[cat].textContent,
-                    data: datasets
+                    data: datasets,
+                    borderColor: '#55bae7',
+                    pointBackgroundColor: '#F5C050',
+                    fill: false,
+                    pointHoverBackgroundColor: "#55bae7",
+                    pointHoverBorderColor: "green",
+                    pointRadius: 4,
                 }]
             },
             options: {
@@ -173,9 +180,25 @@ function makeChart(cat, id){
                     padding:{
                         bottom: 50
                     }
+                }, 
+                scales: {
+                    yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+                            labelString: yAxesTitle,
+                            fontSize: 18
+						},
+                    }], 
+                    xAxes: [{
+                        display: true,
+						scaleLabel: {
+							display: true,
+                            labelString: "År",
+                            fontSize: 18
+                        },
+                    }]
                 }
             }
     });
-    
-
 }
