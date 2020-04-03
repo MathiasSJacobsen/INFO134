@@ -107,13 +107,17 @@ function getWinner(mun1number, mun2number) {
             continue;
         }
         if (new Number(education.getEducationPercent(mun1name, cat, "Menn")) > new Number(education.getEducationPercent(mun2name, cat, "Menn"))) {
+            makeWinnerFat("municipalityOne", cat, 1);
             mun1points++;
         } else if (new Number(education.getEducationPercent(mun1name, cat, "Menn")) < new Number(education.getEducationPercent(mun2name, cat, "Menn"))){
+            makeWinnerFat("municipalityTwo", cat, 1);
             mun2points++;
         }
         if (new Number(education.getEducationPercent(mun1name, cat, "Kvinner")) > new Number(education.getEducationPercent(mun2name, cat, "Kvinner"))) {
+            makeWinnerFat("municipalityOne", cat, 2);
             mun1points++;
         } else if (new Number(education.getEducationPercent(mun1name, cat, "Kvinner")) < new Number(education.getEducationPercent(mun2name, cat, "Kvinner"))) {
+            makeWinnerFat("municipalityTwo", cat, 2);
             mun2points++;
         }
     }
@@ -124,4 +128,21 @@ function getWinner(mun1number, mun2number) {
     } else {
         return undefined;
     }
+}
+
+/**
+ * Makes a the winner string fat
+ * @param {String} table witch of the two municipality tables won
+ * @param {String} cat Is the education categori
+ * @param {Number} gender is the position of the gender object in the row, 1 = Male, 2 = Female 
+ */
+function makeWinnerFat(table, cat, gender){
+    let winnerRow = document.getElementById(table).rows;
+    for (let i = 0; i < winnerRow.length; i++){
+        let winnerCat = winnerRow[i].cells["0"].textContent; 
+        if (winnerCat.substr(0,cat.length) === cat) {
+            winnerRow[i].cells[gender].style.fontWeight = "900";
+       }
+    }
+    return winnerRow;
 }
