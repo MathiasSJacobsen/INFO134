@@ -115,4 +115,61 @@ function makeDetailYearTable(municipalityNumber) {
 
         tableBody.appendChild(tableBodyRow);
     }
+    
+    makeChart(1, "populationChart");
+    makeChart(2, "employmentChart");
+    makeChart(3, "educationChart");
+}
+
+/**
+ * Makes a chart with given params
+ * @param {Number} cat the index of the categori in the table 
+ * @param {String} id the canvas that are suppose to be used
+ */
+function makeChart(cat, id){
+    let myChart = document.getElementById(id).getContext('2d');
+
+    Chart.defaults.global.defaultFontFamily= 'Cambria Math';
+
+    let data = document.getElementsByClassName("table");
+    let lables = [];
+    let datasets = [];
+    console.log(data);
+    for (let i = 1; i < data[0].rows.length; i++){
+        lables.push(data[0].rows[i].cells[0].textContent)
+        if (data[0].rows[i].cells[cat].textContent.includes("%")){
+            let temp = data[0].rows[i].cells[cat].textContent.substr(0,data[0].rows[i].cells[cat].textContent.length-1)
+            datasets.push(temp)      
+        }else {
+            datasets.push(data[0].rows[i].cells[cat].textContent)
+        }
+    }
+    console.log(lables, datasets)
+    datasets.reverse()
+    lables.reverse()
+
+    let config = new Chart(myChart, {
+            type: 'line',
+            data: {
+                labels: lables,
+                datasets: [{
+                    label: data[0].rows[0].cells[cat].textContent,
+                    data: datasets
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: data[0].rows[0].cells[cat].textContent,
+                    fontSize: 25,
+                    fontColor: '#000',
+
+                },
+                legend: {
+                    display : false
+                }
+            }
+    });
+    
+
 }
