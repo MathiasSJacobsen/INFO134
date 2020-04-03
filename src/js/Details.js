@@ -129,7 +129,8 @@ function makeDetailYearTable(municipalityNumber) {
 function makeChart(cat, id){
     let myChart = document.getElementById(id).getContext('2d');
 
-    Chart.defaults.global.defaultFontFamily= 'Cambria Math';
+    Chart.defaults.global.defaultFontFamily = 'Cambria Math';
+    Chart.defaults.global.defaultFontColor = '#000';
 
     let data = document.getElementsByClassName("table");
     let lables = [];
@@ -167,6 +168,11 @@ function makeChart(cat, id){
                 },
                 legend: {
                     display : false
+                }, 
+                layout:{
+                    padding:{
+                        bottom: 50
+                    }
                 }
             }
     });

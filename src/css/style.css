@@ -101,6 +101,9 @@ th {
         display: flex;
         flex-direction: column;
     }
+    #charts {
+        visibility: hidden;
+    }
 }
 
 #information {
