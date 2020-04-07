@@ -60,7 +60,7 @@ function makeDetailOverview(municipalityNumber) {
     infoELement.appendChild(document.createElement("br"));
     infoELement.appendChild(document.createTextNode("Sysselsatte: " + employmentQuantity + " / " + employmentPercent + " % (2018)"));
     infoELement.appendChild(document.createElement("br"));
-    infoELement.appendChild(document.createTextNode("Utdanning: " + higherEducationQuantity + " / " + higherEducationPercent + "% (2017)"));
+    infoELement.appendChild(document.createTextNode("Høyere utdanning: " + higherEducationQuantity + " / " + higherEducationPercent + "% (2017)"));
 
     overview.appendChild(nameElement);
     overview.appendChild(infoELement);
@@ -83,7 +83,7 @@ function makeDetailYearTable(municipalityNumber) {
     yearHeadElement.appendChild(document.createTextNode("År"));
     popHeadElement.appendChild(document.createTextNode("Befolkning"));
     empHeadElement.appendChild(document.createTextNode("Sysselsatte"));
-    eduHeadElement.appendChild(document.createTextNode("Utdannede"));
+    eduHeadElement.appendChild(document.createTextNode("Høyere utdanning"));
 
     tableHeadRow.appendChild(yearHeadElement);
     tableHeadRow.appendChild(popHeadElement);
