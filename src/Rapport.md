@@ -4,7 +4,7 @@
 
 2. On line 17 in `LoadData.js` we check if all the objects to the datasets are loaded, and if they are that means that the datasets have been downloaded. We had to put in a set timeout (10 ms) to handle the `Uncaught RangeError: Maximum call stack size exceeded`.
 
-3. We are using @media to in our CSS to check if the size of the screen is below 700 pixels and if so display the content vertically, and if not horizontally. (we decided ourselves that 700 pixels and less is a small screen)
+3. We are using @media in our CSS to check if the size of the screen is below 700 pixels and if so display the content vertically, and if not horizontally. (we decided ourselves that 700 pixels and less is a small screen)
 ```css
 @media (max-width:700px){
     #row, #compareSpan {
@@ -14,6 +14,6 @@
 }
 ```
 
-4. The three datasets doesn't have the same amount of municipalities. The education data have more municipalities than the other two. Used a `Python`-program that counted all municipalities in each set. The education set had more then the rest. Lardal is an example of a municipality that exists in the thrid dataset, but not in the other two.
+4. The three datasets doesn't have the same amount of municipalities. The education data have more municipalities than the other two. Used a `Python`-program that counted all municipalities in each set. The education set had more then the rest. Lardal is an example of a municipality that exists in the third dataset, but not in the other two.
 
 # Beskrivelse av filer
