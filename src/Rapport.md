@@ -1,4 +1,5 @@
-# Rapport
+Candidate numbers: 134, 136, 149, 117
+# Report
 
 1. In our program the datasets are not downloaded at the same time. XMLHttpRequset is not synchronous, this means that the function gives a callback when all data is recieved. The data is loaded in line 5-7 in `LoadData.js`, that makes the three objects with the data. They all have their own constructor. This is since one of them had a bit different setup than the two others.
 
