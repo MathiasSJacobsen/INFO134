@@ -1,8 +1,8 @@
 # Rapport
 
-1. In our program the datasets are not downloaded at the same time. XMLHttpRequset is not synchronous, this means that the function gives a callback when all data is recived. The data is loaded in line 5-7 in `LoadData.js`, that makes the three objects with the data. Thay all have there own constructor. This is since one of them had a bit different setup then the two others.
+1. In our program the datasets are not downloaded at the same time. XMLHttpRequset is not synchronous, this means that the function gives a callback when all data is recieved. The data is loaded in line 5-7 in `LoadData.js`, that makes the three objects with the data. They all have their own constructor. This is since one of them had a bit different setup than the two others.
 
-2. On line 17 in `LoadData.js` we check if all the objects to the datasets are made, and if they are made that means that the datasets have been downloaded. We had to put in a set timeout (10 ms) to handle the `Uncaught RangeError: Maximum call stack size exceeded`.
+2. On line 17 in `LoadData.js` we check if all the objects to the datasets are loaded, and if they are that means that the datasets have been downloaded. We had to put in a set timeout (10 ms) to handle the `Uncaught RangeError: Maximum call stack size exceeded`.
 
 3. We are using @media to in our CSS to check if the size of the screen is below 700 pixels and if so display the content vertically, and if not horizontally. (we decided ourselves that 700 pixels and less is a small screen)
 ```css
@@ -14,6 +14,6 @@
 }
 ```
 
-4. The three datasets dosn't have the same amount of municipalities. The education data have more municipalities then the other two. Used a `Python`-program that counted all municipalities in each set. The education set had more then the rest.
+4. The three datasets doesn't have the same amount of municipalities. The education data have more municipalities than the other two. Used a `Python`-program that counted all municipalities in each set. The education set had more then the rest. Lardal is an example of a municipality that exists in the thrid dataset, but not in the other two.
 
 # Beskrivelse av filer
