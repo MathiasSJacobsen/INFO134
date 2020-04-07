@@ -11,7 +11,7 @@ function makeOverviewTable() {
                                 <td>${population.getNumber(municipality)}</td>
                                 <td>${population.getTotalPopulation(municipality)}
                                 <td>${population.getPopulationGrowth(municipality) + "%"}</td></td>`;
-            document.getElementById("table").appendChild(tRow);
+            document.getElementById("overviewTable").appendChild(tRow);
         }
         return
     }
