@@ -42,7 +42,6 @@ function clearDetails() {
 function makeDetailOverview(municipalityNumber) {
     let name = population.getName(municipalityNumber);
     let totalPopulation = population.getTotalPopulation(name);
-    let populationGrowth = population.getPopulationGrowth(name);
     let higherEducationQuantity = education.getHigherEducationQuantity(name);
     let higherEducationPercent = education.getHigherEducationPercent(name);
     let employmentQuantity = employment.getEmploymentQuantity(name);
